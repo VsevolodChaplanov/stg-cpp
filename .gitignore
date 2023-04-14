@@ -1,3 +1,10 @@
+cmake-build-debug
+build
+.venv
+.vscode
+.cache
+.idea
+
 # Prerequisites
 *.d
 

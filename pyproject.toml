@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "stg-v2"
+version = "0.1.0"
+description = ""
+authors = ["VsevolodChaplanov <woornad@gmail.com>"]
+readme = "README.md"
+packages = [{include = "stg_v2"}]
+
+[tool.poetry.dependencies]
+conan = "1.56.0"
+python = "^3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+ipdb = "^0.13.11"
+pytest = "^7.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

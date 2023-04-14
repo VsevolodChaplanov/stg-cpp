@@ -1,0 +1,1 @@
+#include "stg/spectral_method/i_spectral_method.hpp"
