@@ -64,7 +64,7 @@ file(GLOB_RECURSE TESTSOURCES
   ${STG_APPLICATION_ROOT_DIR}/tests/*.cpp
   ${STG_APPLICATION_ROOT_DIR}/tests/*.hpp)
 
-add_executable(${APPLICATION_TESTS} ${TESTSOURCES})
+add_executable(${APPLICATION_TESTS} ${TESTSOURCES} tests/test_collect_statistics_from_1d_data.cpp)
 
 target_link_libraries(${APPLICATION_TESTS} PUBLIC
   ${STG_APPLICATION_LIB}

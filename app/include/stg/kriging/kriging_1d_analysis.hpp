@@ -20,10 +20,10 @@ using namespace stg::statistics;
     , fourier_space_mesh_{loader.load_mesh<T>("phi_11.vtk")}
     , covariations_{loader.load_scalar_data<T>("r_11.vtk")}
     , fert_values_{loader.load_scalar_data<T>("phi_11.vtk")}
-    , velocity_samples_{loader.load_velocity_samples<T>()}
-    , calc_covariations_{real_space_mesh_->n_vertices()}
-    , calc_fert_values_{real_space_mesh_->n_vertices()}
-    { }
+    , velocity_samples_{loader.load_velocity_samples_1sg<T>()} {
+      calc_covariations_.resize(real_space_mesh_->n_vertices());
+      calc_fert_values_.resize(real_space_mesh_->n_vertices());
+    }
 
     const std::shared_ptr<CubeFiniteElementsMesh<value_type>> real_space_mesh() const { return real_space_mesh_; }
 
@@ -33,9 +33,9 @@ using namespace stg::statistics;
     tensors_iterator covariations_end() { return covariations_.end(); }
     tensors_iterator fert_begin() { return fert_values_.begin(); }
     tensors_iterator fert_end() { return fert_values_.end(); }
-    const std::vector<Tensor<value_type>> covariations_from_data() const { return covariations_; }
+    const std::vector<value_type> covariations_from_data() const { return covariations_; }
 
-    const std::vector<Tensor<value_type>> calculate_covariations() {
+    const std::vector<value_type> calculate_covariations() {
       const auto center_vert_lin_index = real_space_mesh_->center_lin_index();
       const auto center_vert = real_space_mesh_->relation_table()->vertex(center_vert_lin_index);
 
@@ -54,7 +54,11 @@ using namespace stg::statistics;
       return calc_covariations_;
     }
 
-    
+    value_type std_btw_covariations() const {
+      auto cal_view = calc_covariations_ | rv::all;
+      auto data_view = covariations_ | rv::all;
+      return StandardDeviation::std(cal_view, data_view);
+    }
 
   private:
     const std::shared_ptr<CubeFiniteElementsMesh<value_type>> real_space_mesh_;
@@ -65,7 +69,6 @@ using namespace stg::statistics;
 
     std::vector<value_type> calc_covariations_;
     std::vector<value_type> calc_fert_values_;
-
   };
 
 }

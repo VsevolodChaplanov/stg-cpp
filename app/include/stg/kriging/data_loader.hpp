@@ -5,6 +5,7 @@
 #include <vtk_parser/rectilinear_grid_parser.hpp>
 #include <velocity_field/velocity_field.hpp>
 #include <velocity_field/velocity_samples.hpp>
+#include <velocity_field/velocity_samples_1d.hpp>
 #include <mesh_builders.hpp>
 #include <statistics.hpp>
 
@@ -30,7 +31,7 @@ using namespace stg::field;
     }
 
     template<std::floating_point T>
-    std::vector<Tensor<T>> load_scalar_data(std::string_view filename) const {
+    std::vector<T> load_scalar_data(std::string_view filename) const {
       auto path_to_file = work_dir_;
       path_to_file += fs::path{filename};
       RectilinearGridParser parser{path_to_file.string()};
@@ -85,6 +86,21 @@ using namespace stg::field;
         }
       }
       return VelocitySamples<T>{std::move(samples)};
+    }
+
+    template<std::floating_point T>
+    VelocitySamples1D<T> load_velocity_samples_1sg() const {
+      std::vector<VelocityField1D<T>> samples;
+      samples.reserve(100);
+      for (const auto & entry : fs::directory_iterator(work_dir_)) {
+        const bool is_velocity_field_file = entry.path().filename().string().starts_with("sg1");
+        if (is_velocity_field_file) {
+          RectilinearGridParser parser{entry.path().string()};
+          auto file_field = parser.scalar_data<T>();
+          samples.emplace_back(std::move(file_field));
+        }
+      }
+      return VelocitySamples1D<T>{std::move(samples)};
     }
 
     template<std::floating_point T>

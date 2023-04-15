@@ -16,7 +16,8 @@
 #include <mocks/mock_spectral.hpp>
 #include <stg/kriging.hpp>
 
-
+namespace fs = std::filesystem;
+using namespace std::literals;
 using namespace Catch::Matchers;
 using namespace stg;
 using namespace stg::mesh;

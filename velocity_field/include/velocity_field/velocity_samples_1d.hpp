@@ -13,6 +13,9 @@ namespace stg::field {
     VelocitySamples1D(std::size_t samples_amount, std::size_t vertices_amount)
       : samples_{samples_amount, VelocitySamples1D{vertices_amount}} { }
 
+    VelocitySamples1D(std::vector<VelocityField1D<value_type>>&& samples)
+      : samples_{std::move(samples)} { }
+
     auto vx_component_for_vertex(std::size_t ivert) const {
       return samples_ | rv::transform([ivert] (const auto& field) {
         return field.vx_view()[ivert];
@@ -30,7 +33,7 @@ namespace stg::field {
     VelocityField1D<value_type>& sample(std::size_t index) {
       return samples_[index];
     }
-
+    field = {const stg::field::VelocityField1D<double> &}
     constexpr std::size_t size() const { return samples_.size(); }
 
   private:

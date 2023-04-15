@@ -16,7 +16,9 @@ namespace rv = ranges::views;
 
     VelocityField1D(std::size_t n) : vx_(n) { }
     VelocityField1D(std::vector<value_type> values) : vx_{std::move(values)} { }
+/*
     VelocityField1D(std::vector<value_type>&& values) : vx_{std::move(values)} { }
+*/
 
     template<std::input_iterator Iter>
     VelocityField1D(Iter begin, Iter end) : vx_{begin, end} { }
