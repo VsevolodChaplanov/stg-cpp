@@ -1,0 +1,769 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bin/stg_rn_generator_tests"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_directories",
+			"target_link_libraries",
+			"set_property",
+			"conan_define_targets",
+			"conan_basic_setup",
+			"add_compile_options",
+			"add_compile_definitions"
+		],
+		"files" : 
+		[
+			"random_generator/CMakeLists.txt",
+			"cmake-build-release/conanbuildinfo_multi.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 30,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 37,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 32,
+				"parent" : 0
+			},
+			{
+				"file" : 2
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 16,
+				"parent" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 706,
+				"parent" : 5
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 85,
+				"parent" : 6
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 435,
+				"parent" : 6
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 505,
+				"parent" : 6
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 575,
+				"parent" : 6
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 155,
+				"parent" : 6
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 26,
+				"parent" : 4
+			},
+			{
+				"command" : 7,
+				"file" : 2,
+				"line" : 39,
+				"parent" : 4
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-O3 -DNDEBUG -fdiagnostics-color=always"
+				},
+				{
+					"backtrace" : 12,
+					"fragment" : "-Wall"
+				},
+				{
+					"fragment" : "-std=gnu++20"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 3,
+					"define" : "BOOST_STACKTRACE_ADDR2LINE_LOCATION=\"/usr/bin/addr2line\""
+				},
+				{
+					"backtrace" : 3,
+					"define" : "BOOST_STACKTRACE_USE_ADDR2LINE"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "BOOST_STACKTRACE_USE_BACKTRACE"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "BOOST_STACKTRACE_USE_NOOP"
+				},
+				{
+					"backtrace" : 13,
+					"define" : "D_GLIBCXX_USE_CXX11_ABI=0"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/vsevolod/coding/C++/diplom/std_v3-cpp/random_generator/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/vsevolod/coding/C++/diplom/std_v3-cpp/random_generator/include/stg_random"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/include"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/vsevolod/.conan/data/zlib/1.2.13/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/include"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/vsevolod/.conan/data/bzip2/1.0.8/_/_/package/3cfc45772763dad1237052f26c1fe8b2bae3f7d2/include"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/include"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 3,
+			"id" : "stg-rn-generator::@055a3e85da92da1206f4"
+		}
+	],
+	"id" : "stg_rn_generator_tests::@055a3e85da92da1206f4",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-O3 -DNDEBUG",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-L/home/vsevolod/coding/C++/diplom/std_v3-cpp/random_generator/include",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-L/home/vsevolod/coding/C++/diplom/std_v3-cpp/random_generator/include/stg_random",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-L/home/vsevolod/coding/C++/diplom/std_v3-cpp/random_generator/CONAN_PKG::catch2",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-L/home/vsevolod/coding/C++/diplom/std_v3-cpp/random_generator/CONAN_PKG::boost",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/vsevolod/coding/C++/diplom/std_v3-cpp/random_generator/include:/home/vsevolod/coding/C++/diplom/std_v3-cpp/random_generator/include/stg_random:/home/vsevolod/coding/C++/diplom/std_v3-cpp/random_generator/CONAN_PKG::catch2:/home/vsevolod/coding/C++/diplom/std_v3-cpp/random_generator/CONAN_PKG::boost",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "bin/libstg-rn-generator.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_contract.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_coroutine.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_fiber_numa.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_fiber.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_context.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_graph.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_iostreams.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_json.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_locale.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_log_setup.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_log.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99f.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99l.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1f.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1l.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_nowide.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_program_options.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_random.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_regex.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_addr2line.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_backtrace.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_basic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_noop.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_timer.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_type_erasure.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_thread.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_chrono.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_container.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_date_time.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_unit_test_framework.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_prg_exec_monitor.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_test_exec_monitor.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_exception.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_wave.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_filesystem.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_atomic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_wserialization.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_serialization.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_contract.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_coroutine.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_fiber_numa.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_fiber.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_context.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_graph.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_iostreams.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_json.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_locale.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_log_setup.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_log.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99f.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99l.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1f.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1l.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_nowide.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_program_options.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_random.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_regex.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_addr2line.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_backtrace.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_basic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_noop.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_timer.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_type_erasure.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_thread.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_chrono.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_container.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_date_time.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_unit_test_framework.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_prg_exec_monitor.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_test_exec_monitor.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_exception.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_wave.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_filesystem.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_atomic.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_wserialization.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_serialization.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "-lrt",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "/home/vsevolod/.conan/data/zlib/1.2.13/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/lib/libz.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "/home/vsevolod/.conan/data/zlib/1.2.13/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/lib/libz.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "/home/vsevolod/.conan/data/bzip2/1.0.8/_/_/package/3cfc45772763dad1237052f26c1fe8b2bae3f7d2/lib/libbz2.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "/home/vsevolod/.conan/data/bzip2/1.0.8/_/_/package/3cfc45772763dad1237052f26c1fe8b2bae3f7d2/lib/libbz2.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/lib/libbacktrace.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/lib/libbacktrace.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/libCatch2Main.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/libCatch2.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/libCatch2Main.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/libCatch2.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "-lm",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "stg_rn_generator_tests",
+	"nameOnDisk" : "stg_rn_generator_tests",
+	"paths" : 
+	{
+		"build" : "random_generator",
+		"source" : "random_generator"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "random_generator/tests/common.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "random_generator/tests/main_tests.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "random_generator/tests/test_generator.cpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}

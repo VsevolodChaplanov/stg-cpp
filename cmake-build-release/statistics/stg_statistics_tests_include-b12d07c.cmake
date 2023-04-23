@@ -1,0 +1,5 @@
+if(EXISTS "/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/statistics/stg_statistics_tests_tests-b12d07c.cmake")
+  include("/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/statistics/stg_statistics_tests_tests-b12d07c.cmake")
+else()
+  add_test(stg_statistics_tests_NOT_BUILT-b12d07c stg_statistics_tests_NOT_BUILT-b12d07c)
+endif()

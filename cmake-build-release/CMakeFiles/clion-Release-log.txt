@@ -1,0 +1,220 @@
+/snap/clion/234/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=/snap/clion/234/bin/ninja/linux/x64/ninja -G Ninja -S /home/vsevolod/coding/C++/diplom/std_v3-cpp -B /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release
+-- Conan: Using cmake targets configuration
+-- Library boost_contract found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_contract.a
+-- Library boost_coroutine found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_coroutine.a
+-- Library boost_fiber_numa found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_fiber_numa.a
+-- Library boost_fiber found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_fiber.a
+-- Library boost_context found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_context.a
+-- Library boost_graph found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_graph.a
+-- Library boost_iostreams found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_iostreams.a
+-- Library boost_json found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_json.a
+-- Library boost_locale found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_locale.a
+-- Library boost_log_setup found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_log_setup.a
+-- Library boost_log found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_log.a
+-- Library boost_math_c99 found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99.a
+-- Library boost_math_c99f found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99f.a
+-- Library boost_math_c99l found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99l.a
+-- Library boost_math_tr1 found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1.a
+-- Library boost_math_tr1f found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1f.a
+-- Library boost_math_tr1l found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1l.a
+-- Library boost_nowide found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_nowide.a
+-- Library boost_program_options found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_program_options.a
+-- Library boost_random found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_random.a
+-- Library boost_regex found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_regex.a
+-- Library boost_stacktrace_addr2line found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_addr2line.a
+-- Library boost_stacktrace_backtrace found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_backtrace.a
+-- Library boost_stacktrace_basic found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_basic.a
+-- Library boost_stacktrace_noop found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_noop.a
+-- Library boost_timer found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_timer.a
+-- Library boost_type_erasure found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_type_erasure.a
+-- Library boost_thread found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_thread.a
+-- Library boost_chrono found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_chrono.a
+-- Library boost_container found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_container.a
+-- Library boost_date_time found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_date_time.a
+-- Library boost_unit_test_framework found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_unit_test_framework.a
+-- Library boost_prg_exec_monitor found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_prg_exec_monitor.a
+-- Library boost_test_exec_monitor found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_test_exec_monitor.a
+-- Library boost_exception found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_exception.a
+-- Library boost_wave found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_wave.a
+-- Library boost_filesystem found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_filesystem.a
+-- Library boost_atomic found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_atomic.a
+-- Library boost_wserialization found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_wserialization.a
+-- Library boost_serialization found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_serialization.a
+-- Library boost_contract found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_contract.a
+-- Library boost_coroutine found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_coroutine.a
+-- Library boost_fiber_numa found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_fiber_numa.a
+-- Library boost_fiber found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_fiber.a
+-- Library boost_context found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_context.a
+-- Library boost_graph found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_graph.a
+-- Library boost_iostreams found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_iostreams.a
+-- Library boost_json found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_json.a
+-- Library boost_locale found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_locale.a
+-- Library boost_log_setup found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_log_setup.a
+-- Library boost_log found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_log.a
+-- Library boost_math_c99 found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99.a
+-- Library boost_math_c99f found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99f.a
+-- Library boost_math_c99l found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_c99l.a
+-- Library boost_math_tr1 found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1.a
+-- Library boost_math_tr1f found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1f.a
+-- Library boost_math_tr1l found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_math_tr1l.a
+-- Library boost_nowide found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_nowide.a
+-- Library boost_program_options found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_program_options.a
+-- Library boost_random found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_random.a
+-- Library boost_regex found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_regex.a
+-- Library boost_stacktrace_addr2line found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_addr2line.a
+-- Library boost_stacktrace_backtrace found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_backtrace.a
+-- Library boost_stacktrace_basic found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_basic.a
+-- Library boost_stacktrace_noop found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_stacktrace_noop.a
+-- Library boost_timer found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_timer.a
+-- Library boost_type_erasure found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_type_erasure.a
+-- Library boost_thread found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_thread.a
+-- Library boost_chrono found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_chrono.a
+-- Library boost_container found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_container.a
+-- Library boost_date_time found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_date_time.a
+-- Library boost_unit_test_framework found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_unit_test_framework.a
+-- Library boost_prg_exec_monitor found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_prg_exec_monitor.a
+-- Library boost_test_exec_monitor found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_test_exec_monitor.a
+-- Library boost_exception found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_exception.a
+-- Library boost_wave found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_wave.a
+-- Library boost_filesystem found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_filesystem.a
+-- Library boost_atomic found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_atomic.a
+-- Library boost_wserialization found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_wserialization.a
+-- Library boost_serialization found /home/vsevolod/.conan/data/boost/1.80.0/_/_/package/83fcf0af66d2d8b7b7d60ef6c249b03c5b0dc744/lib/libboost_serialization.a
+-- Library Catch2Main found /home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/libCatch2Main.a
+-- Library Catch2 found /home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/libCatch2.a
+-- Library Catch2Main found /home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/libCatch2Main.a
+-- Library Catch2 found /home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/libCatch2.a
+-- Library fmt found /home/vsevolod/.conan/data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/lib/libfmt.a
+-- Library fmt found /home/vsevolod/.conan/data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/lib/libfmt.a
+-- Library fftw3_omp found /home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/lib/libfftw3_omp.a
+-- Library fftw3 found /home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/lib/libfftw3.a
+-- Library fftw3_omp found /home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/lib/libfftw3_omp.a
+-- Library fftw3 found /home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/lib/libfftw3.a
+-- Library z found /home/vsevolod/.conan/data/zlib/1.2.13/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/lib/libz.a
+-- Library z found /home/vsevolod/.conan/data/zlib/1.2.13/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/lib/libz.a
+-- Library bz2 found /home/vsevolod/.conan/data/bzip2/1.0.8/_/_/package/3cfc45772763dad1237052f26c1fe8b2bae3f7d2/lib/libbz2.a
+-- Library bz2 found /home/vsevolod/.conan/data/bzip2/1.0.8/_/_/package/3cfc45772763dad1237052f26c1fe8b2bae3f7d2/lib/libbz2.a
+-- Library backtrace found /home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/lib/libbacktrace.a
+-- Library backtrace found /home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/lib/libbacktrace.a
+-- Conan: Adjusting default RPATHs Conan policies
+-- Conan: Adjusting language standard
+-- Current conanbuildinfo.cmake directory: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release
+-- Conan: Compiler GCC>=5, checking major version 12
+-- Conan: Checking correct version: 12
+BUILD TYPE: Release
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try38.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try3.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try35.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try86.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try55.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try40.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try79.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try5.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try67.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try12.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try65.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try30.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try42.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try32.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try56.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try85.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try17.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try1.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try19.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try34.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try72.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try81.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try91.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try6.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try58.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try15.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try93.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try21.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try22.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try60.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try16.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try94.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try80.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/phi_23.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try96.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try18.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try45.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try59.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try89.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/phi_13.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try10.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try26.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/phi_33.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try97.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try54.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try13.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try37.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try99.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try7.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try43.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try98.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/r_22.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/r_33.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try8.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/r_12.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try49.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try33.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try39.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/r_13.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try51.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try75.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try44.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try0.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try77.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try82.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try83.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try64.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try20.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try46.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try2.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try11.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/phi_22.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try95.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try57.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/r_23.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try23.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try92.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try53.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try47.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try71.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try63.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try14.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try61.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try62.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try84.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try88.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try74.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try4.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try69.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try9.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try29.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try31.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try36.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try68.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try78.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/phi_12.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try50.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try24.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try76.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try28.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try48.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try41.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try52.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try25.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try87.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/phi_11.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try90.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try70.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/r_11.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try73.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try66.vtk
+-- Up-to-date: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/bin/test_resources/sg3_L1_N21_eigcut200_try27.vtk
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release
