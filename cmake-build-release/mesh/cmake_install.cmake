@@ -1,4 +1,4 @@
-# Install script for directory: /home/vsevolod/coding/C++/diplom/std_v3-cpp/mesh
+# Install script for directory: /home/vsevolod/coding/cpp/stg-cpp/mesh
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -80,9 +80,9 @@ find_package_handle_standard_args(libbacktrace REQUIRED_VARS
 mark_as_advanced(libbacktrace_FOUND libbacktrace_VERSION)
 
 
-set(libbacktrace_INCLUDE_DIRS "/home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/include")
-set(libbacktrace_INCLUDE_DIR "/home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/include")
-set(libbacktrace_INCLUDES "/home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/include")
+set(libbacktrace_INCLUDE_DIRS "/home/vsevolod/.conan/.data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/include")
+set(libbacktrace_INCLUDE_DIR "/home/vsevolod/.conan/.data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/include")
+set(libbacktrace_INCLUDES "/home/vsevolod/.conan/.data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/include")
 set(libbacktrace_RES_DIRS )
 set(libbacktrace_DEFINITIONS )
 set(libbacktrace_LINKER_FLAGS_LIST
@@ -118,7 +118,7 @@ mark_as_advanced(libbacktrace_INCLUDE_DIRS
 
 # Find the real .lib/.a and add them to libbacktrace_LIBS and libbacktrace_LIBRARY_LIST
 set(libbacktrace_LIBRARY_LIST backtrace)
-set(libbacktrace_LIB_DIRS "/home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/lib")
+set(libbacktrace_LIB_DIRS "/home/vsevolod/.conan/.data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/lib")
 
 # Gather all the libraries that should be linked to the targets (do not touch existing variables):
 set(_libbacktrace_DEPENDENCIES "${libbacktrace_FRAMEWORKS_FOUND} ${libbacktrace_SYSTEM_LIBS} ")
@@ -147,8 +147,8 @@ endforeach()
 set(libbacktrace_LIBRARIES_TARGETS "${libbacktrace_LIBRARIES_TARGETS};")
 set(libbacktrace_LIBRARIES "${libbacktrace_LIBRARIES};")
 
-set(CMAKE_MODULE_PATH "/home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/" ${CMAKE_MODULE_PATH})
-set(CMAKE_PREFIX_PATH "/home/vsevolod/.conan/data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/" ${CMAKE_PREFIX_PATH})
+set(CMAKE_MODULE_PATH "/home/vsevolod/.conan/.data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/" ${CMAKE_MODULE_PATH})
+set(CMAKE_PREFIX_PATH "/home/vsevolod/.conan/.data/libbacktrace/cci.20210118/_/_/package/2a19826344ff00be1c04403f2f8e7008ed3a7cc6/" ${CMAKE_PREFIX_PATH})
 
 if(NOT ${CMAKE_VERSION} VERSION_LESS "3.0")
     # Target approach

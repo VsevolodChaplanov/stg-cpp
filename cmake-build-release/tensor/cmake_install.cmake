@@ -1,4 +1,4 @@
-# Install script for directory: /home/vsevolod/coding/C++/diplom/std_v3-cpp/tensor
+# Install script for directory: /home/vsevolod/coding/cpp/stg-cpp/tensor
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

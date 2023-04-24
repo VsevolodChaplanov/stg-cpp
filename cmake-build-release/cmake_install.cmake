@@ -1,4 +1,4 @@
-# Install script for directory: /home/vsevolod/coding/C++/diplom/std_v3-cpp
+# Install script for directory: /home/vsevolod/coding/cpp/stg-cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,47 +44,47 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/random_generator/cmake_install.cmake")
+  include("/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/random_generator/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/tensor/cmake_install.cmake")
+  include("/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/tensor/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/statistics/cmake_install.cmake")
+  include("/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/statistics/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/mesh/cmake_install.cmake")
+  include("/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/mesh/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/velocity_field/cmake_install.cmake")
+  include("/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/velocity_field/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/stg_generators/cmake_install.cmake")
+  include("/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/stg_generators/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/gaussian_method/cmake_install.cmake")
+  include("/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/gaussian_method/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/app/cmake_install.cmake")
+  include("/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/app/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/sandbox/cmake_install.cmake")
+  include("/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/sandbox/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -95,5 +95,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/vsevolod/coding/C++/diplom/std_v3-cpp/cmake-build-release/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

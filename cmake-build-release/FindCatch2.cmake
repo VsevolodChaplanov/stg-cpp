@@ -99,9 +99,9 @@ endif()
 #############################################################################################
 
 
-set(catch2_INCLUDE_DIRS "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
-set(catch2_INCLUDE_DIR "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
-set(catch2_INCLUDES "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
+set(catch2_INCLUDE_DIRS "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
+set(catch2_INCLUDE_DIR "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
+set(catch2_INCLUDES "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
 set(catch2_RES_DIRS )
 set(catch2_DEFINITIONS )
 set(catch2_LINKER_FLAGS_LIST
@@ -120,7 +120,7 @@ set(catch2_SYSTEM_LIBS m)
 set(catch2_FRAMEWORK_DIRS )
 set(catch2_FRAMEWORKS )
 set(catch2_FRAMEWORKS_FOUND "") # Will be filled later
-set(catch2_BUILD_MODULES_PATHS "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/conan-official-catch2-targets.cmake")
+set(catch2_BUILD_MODULES_PATHS "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/conan-official-catch2-targets.cmake")
 
 conan_find_apple_frameworks(catch2_FRAMEWORKS_FOUND "${catch2_FRAMEWORKS}" "${catch2_FRAMEWORK_DIRS}")
 
@@ -137,7 +137,7 @@ mark_as_advanced(catch2_INCLUDE_DIRS
 
 # Find the real .lib/.a and add them to catch2_LIBS and catch2_LIBRARY_LIST
 set(catch2_LIBRARY_LIST Catch2Main Catch2)
-set(catch2_LIB_DIRS "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib")
+set(catch2_LIB_DIRS "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib")
 
 # Gather all the libraries that should be linked to the targets (do not touch existing variables):
 set(_catch2_DEPENDENCIES "${catch2_FRAMEWORKS_FOUND} ${catch2_SYSTEM_LIBS} ")
@@ -166,16 +166,16 @@ endforeach()
 set(catch2_LIBRARIES_TARGETS "${catch2_LIBRARIES_TARGETS};")
 set(catch2_LIBRARIES "${catch2_LIBRARIES};")
 
-set(CMAKE_MODULE_PATH "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/Catch2" ${CMAKE_MODULE_PATH})
-set(CMAKE_PREFIX_PATH "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/Catch2" ${CMAKE_PREFIX_PATH})
+set(CMAKE_MODULE_PATH "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/Catch2" ${CMAKE_MODULE_PATH})
+set(CMAKE_PREFIX_PATH "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/Catch2" ${CMAKE_PREFIX_PATH})
 
 
 ########### COMPONENT _catch2 VARIABLES #############################################
 
-set(catch2__catch2_INCLUDE_DIRS "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
-set(catch2__catch2_INCLUDE_DIR "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
-set(catch2__catch2_INCLUDES "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
-set(catch2__catch2_LIB_DIRS "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib")
+set(catch2__catch2_INCLUDE_DIRS "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
+set(catch2__catch2_INCLUDE_DIR "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
+set(catch2__catch2_INCLUDES "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
+set(catch2__catch2_LIB_DIRS "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib")
 set(catch2__catch2_RES_DIRS )
 set(catch2__catch2_DEFINITIONS )
 set(catch2__catch2_COMPILE_DEFINITIONS )
@@ -185,7 +185,7 @@ set(catch2__catch2_LIBS Catch2)
 set(catch2__catch2_SYSTEM_LIBS )
 set(catch2__catch2_FRAMEWORK_DIRS )
 set(catch2__catch2_FRAMEWORKS )
-set(catch2__catch2_BUILD_MODULES_PATHS "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/conan-official-catch2-targets.cmake")
+set(catch2__catch2_BUILD_MODULES_PATHS "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/conan-official-catch2-targets.cmake")
 set(catch2__catch2_DEPENDENCIES )
 set(catch2__catch2_LINKER_FLAGS_LIST
         "$<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,SHARED_LIBRARY>:>"
@@ -195,10 +195,10 @@ set(catch2__catch2_LINKER_FLAGS_LIST
 
 ########### COMPONENT catch2_with_main VARIABLES #############################################
 
-set(catch2_catch2_with_main_INCLUDE_DIRS "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
-set(catch2_catch2_with_main_INCLUDE_DIR "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
-set(catch2_catch2_with_main_INCLUDES "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
-set(catch2_catch2_with_main_LIB_DIRS "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib")
+set(catch2_catch2_with_main_INCLUDE_DIRS "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
+set(catch2_catch2_with_main_INCLUDE_DIR "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
+set(catch2_catch2_with_main_INCLUDES "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/include")
+set(catch2_catch2_with_main_LIB_DIRS "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib")
 set(catch2_catch2_with_main_RES_DIRS )
 set(catch2_catch2_with_main_DEFINITIONS )
 set(catch2_catch2_with_main_COMPILE_DEFINITIONS )
@@ -208,7 +208,7 @@ set(catch2_catch2_with_main_LIBS Catch2Main)
 set(catch2_catch2_with_main_SYSTEM_LIBS m)
 set(catch2_catch2_with_main_FRAMEWORK_DIRS )
 set(catch2_catch2_with_main_FRAMEWORKS )
-set(catch2_catch2_with_main_BUILD_MODULES_PATHS "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/conan-official-catch2-targets.cmake")
+set(catch2_catch2_with_main_BUILD_MODULES_PATHS "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/conan-official-catch2-targets.cmake")
 set(catch2_catch2_with_main_DEPENDENCIES catch2::_catch2)
 set(catch2_catch2_with_main_LINKER_FLAGS_LIST
         "$<$<STREQUAL:$<TARGET_PROPERTY:TYPE>,SHARED_LIBRARY>:>"
@@ -265,8 +265,8 @@ conan_package_library_targets("${catch2_catch2_with_main_LIBS}"
 
 set(catch2_catch2_with_main_LINK_LIBS ${catch2_catch2_with_main_LIB_TARGETS} ${catch2_catch2_with_main_LIBS_FRAMEWORKS_DEPS})
 
-set(CMAKE_MODULE_PATH "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/Catch2" ${CMAKE_MODULE_PATH})
-set(CMAKE_PREFIX_PATH "/home/vsevolod/.conan/data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/Catch2" ${CMAKE_PREFIX_PATH})
+set(CMAKE_MODULE_PATH "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/Catch2" ${CMAKE_MODULE_PATH})
+set(CMAKE_PREFIX_PATH "/home/vsevolod/.conan/.data/catch2/3.1.0/_/_/package/9950e1afe939202602a2de8a1b8a986781821358/lib/cmake/Catch2" ${CMAKE_PREFIX_PATH})
 
 
 ########## TARGETS ##########################################################################

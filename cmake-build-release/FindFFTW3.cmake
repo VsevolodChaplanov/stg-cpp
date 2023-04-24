@@ -99,9 +99,9 @@ endif()
 #############################################################################################
 
 
-set(FFTW3_INCLUDE_DIRS "/home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
-set(FFTW3_INCLUDE_DIR "/home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
-set(FFTW3_INCLUDES "/home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
+set(FFTW3_INCLUDE_DIRS "/home/vsevolod/.conan/.data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
+set(FFTW3_INCLUDE_DIR "/home/vsevolod/.conan/.data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
+set(FFTW3_INCLUDES "/home/vsevolod/.conan/.data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
 set(FFTW3_RES_DIRS )
 set(FFTW3_DEFINITIONS )
 set(FFTW3_LINKER_FLAGS_LIST
@@ -137,7 +137,7 @@ mark_as_advanced(FFTW3_INCLUDE_DIRS
 
 # Find the real .lib/.a and add them to FFTW3_LIBS and FFTW3_LIBRARY_LIST
 set(FFTW3_LIBRARY_LIST fftw3_omp fftw3)
-set(FFTW3_LIB_DIRS "/home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/lib")
+set(FFTW3_LIB_DIRS "/home/vsevolod/.conan/.data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/lib")
 
 # Gather all the libraries that should be linked to the targets (do not touch existing variables):
 set(_FFTW3_DEPENDENCIES "${FFTW3_FRAMEWORKS_FOUND} ${FFTW3_SYSTEM_LIBS} ")
@@ -172,10 +172,10 @@ set(CMAKE_PREFIX_PATH  ${CMAKE_PREFIX_PATH})
 
 ########### COMPONENT fftw3 VARIABLES #############################################
 
-set(FFTW3_fftw3_INCLUDE_DIRS "/home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
-set(FFTW3_fftw3_INCLUDE_DIR "/home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
-set(FFTW3_fftw3_INCLUDES "/home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
-set(FFTW3_fftw3_LIB_DIRS "/home/vsevolod/.conan/data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/lib")
+set(FFTW3_fftw3_INCLUDE_DIRS "/home/vsevolod/.conan/.data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
+set(FFTW3_fftw3_INCLUDE_DIR "/home/vsevolod/.conan/.data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
+set(FFTW3_fftw3_INCLUDES "/home/vsevolod/.conan/.data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/include")
+set(FFTW3_fftw3_LIB_DIRS "/home/vsevolod/.conan/.data/fftw/3.3.10/_/_/package/113f6963bbd263d1f9a23fe9431f2476563a0626/lib")
 set(FFTW3_fftw3_RES_DIRS )
 set(FFTW3_fftw3_DEFINITIONS )
 set(FFTW3_fftw3_COMPILE_DEFINITIONS )

@@ -99,9 +99,9 @@ endif()
 #############################################################################################
 
 
-set(fmt_INCLUDE_DIRS "/home/vsevolod/.conan/data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
-set(fmt_INCLUDE_DIR "/home/vsevolod/.conan/data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
-set(fmt_INCLUDES "/home/vsevolod/.conan/data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
+set(fmt_INCLUDE_DIRS "/home/vsevolod/.conan/.data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
+set(fmt_INCLUDE_DIR "/home/vsevolod/.conan/.data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
+set(fmt_INCLUDES "/home/vsevolod/.conan/.data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
 set(fmt_RES_DIRS )
 set(fmt_DEFINITIONS )
 set(fmt_LINKER_FLAGS_LIST
@@ -137,7 +137,7 @@ mark_as_advanced(fmt_INCLUDE_DIRS
 
 # Find the real .lib/.a and add them to fmt_LIBS and fmt_LIBRARY_LIST
 set(fmt_LIBRARY_LIST fmt)
-set(fmt_LIB_DIRS "/home/vsevolod/.conan/data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/lib")
+set(fmt_LIB_DIRS "/home/vsevolod/.conan/.data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/lib")
 
 # Gather all the libraries that should be linked to the targets (do not touch existing variables):
 set(_fmt_DEPENDENCIES "${fmt_FRAMEWORKS_FOUND} ${fmt_SYSTEM_LIBS} ")
@@ -172,10 +172,10 @@ set(CMAKE_PREFIX_PATH  ${CMAKE_PREFIX_PATH})
 
 ########### COMPONENT fmt VARIABLES #############################################
 
-set(fmt_fmt_INCLUDE_DIRS "/home/vsevolod/.conan/data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
-set(fmt_fmt_INCLUDE_DIR "/home/vsevolod/.conan/data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
-set(fmt_fmt_INCLUDES "/home/vsevolod/.conan/data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
-set(fmt_fmt_LIB_DIRS "/home/vsevolod/.conan/data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/lib")
+set(fmt_fmt_INCLUDE_DIRS "/home/vsevolod/.conan/.data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
+set(fmt_fmt_INCLUDE_DIR "/home/vsevolod/.conan/.data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
+set(fmt_fmt_INCLUDES "/home/vsevolod/.conan/.data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/include")
+set(fmt_fmt_LIB_DIRS "/home/vsevolod/.conan/.data/fmt/9.1.0/_/_/package/300cb578a6fb15627a390ac70b832e82fd040283/lib")
 set(fmt_fmt_RES_DIRS )
 set(fmt_fmt_DEFINITIONS )
 set(fmt_fmt_COMPILE_DEFINITIONS )
