@@ -33,7 +33,7 @@ namespace stg::field {
     VelocityField1D<value_type>& sample(std::size_t index) {
       return samples_[index];
     }
-    field = {const stg::field::VelocityField1D<double> &}
+
     constexpr std::size_t size() const { return samples_.size(); }
 
   private:

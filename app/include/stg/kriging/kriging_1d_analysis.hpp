@@ -3,6 +3,8 @@
 
 #include <velocity_field/velocity_field_1d.hpp>
 #include <velocity_field/velocity_samples_1d.hpp>
+#include <rtable/cube_vtk_saver.hpp>
+#include <statistics/deviation.hpp>
 #include "data_loader.hpp"
 
 namespace stg::kriging {
@@ -58,6 +60,63 @@ using namespace stg::statistics;
       auto cal_view = calc_covariations_ | rv::all;
       auto data_view = covariations_ | rv::all;
       return StandardDeviation::std(cal_view, data_view);
+    }
+
+    value_type mean_sqrt_deviation() const {
+      auto calc_cov_v = calc_covariations_ | rv::all;
+      auto data_cov_v = covariations_ | rv::all;
+      auto dev_sqr = Deviation::deviation_range_sqr(calc_cov_v, data_cov_v);
+      auto sqr_dev_mean = Mean::mean(dev_sqr);
+      return sqr_dev_mean;
+    }
+
+    value_type mean_abs_deviation() const {
+      auto calc_cov_v = calc_covariations_ | rv::all;
+      auto data_cov_v = covariations_ | rv::all;
+      auto dev_sqr = Deviation::deviation_range_abs(calc_cov_v, data_cov_v);
+      auto abs_dev_mean = Mean::mean(dev_sqr);
+      return abs_dev_mean;
+    }
+
+    value_type mean_deviation() const {
+      auto calc_cov_v = calc_covariations_ | rv::all;
+      auto data_cov_v = covariations_ | rv::all;
+      auto dev_sqr = Deviation::deviation_range(calc_cov_v, data_cov_v);
+      auto abs_dev_mean = Mean::mean(dev_sqr);
+      return abs_dev_mean;
+    }
+
+    value_type sum_sqrt_deviation() const {
+      auto calc_cov_v = calc_covariations_ | rv::all;
+      auto data_cov_v = covariations_ | rv::all;
+      auto dev_sqr = Deviation::deviation_range_sqr(calc_cov_v, data_cov_v);
+      auto sqr_dev_mean = ranges::accumulate(dev_sqr, 0.);
+      return sqr_dev_mean;
+    }
+
+    value_type sum_abs_deviation() const {
+      auto calc_cov_v = calc_covariations_ | rv::all;
+      auto data_cov_v = covariations_ | rv::all;
+      auto dev_sqr = Deviation::deviation_range_abs(calc_cov_v, data_cov_v);
+      auto abs_dev_mean = ranges::accumulate(dev_sqr, 0.);
+      return abs_dev_mean;
+    }
+
+    value_type sum_deviation() const {
+      auto calc_cov_v = calc_covariations_ | rv::all;
+      auto data_cov_v = covariations_ | rv::all;
+      auto dev_sqr = Deviation::deviation_range(calc_cov_v, data_cov_v);
+      auto abs_dev_mean = ranges::accumulate(dev_sqr, 0.);
+      return abs_dev_mean;
+    }
+
+    void save_calculated_covariations(std::string_view filepath,
+                                      std::string_view table_name = "TableName") const {
+      VtkRectilinearGridSaver saver{filepath};
+      saver.save_mesh(real_space_mesh_->relation_table());
+      saver.save_scalar_data(calc_covariations_.cbegin(),
+                             calc_covariations_.cend(),
+                             table_name);
     }
 
   private:
