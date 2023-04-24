@@ -17,6 +17,7 @@ conan_basic_setup(TARGETS)
 
 # Enable testing with catch2
 include(CTest)
+#include(${CONAN_BUILD_DIRS_CATCH2_DEBUG}/Catch.cmake)
 include(${CONAN_BUILD_DIRS_CATCH2}/Catch.cmake)
 # Find threads library
 set(THREADS_PREFER_PTHREAD_FLAG ON)

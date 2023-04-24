@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <numeric>
 #include <cmath>
+#include <future>
 #include "concepts.hpp"
 #include "mean.hpp"
 

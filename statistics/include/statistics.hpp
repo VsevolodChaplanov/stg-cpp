@@ -8,5 +8,6 @@
 #include "statistics/correlation.hpp"
 #include "statistics/space_covariation.hpp"
 #include "statistics/space_correlation.hpp"
+#include "statistics/deviation.hpp"
 
 #endif
