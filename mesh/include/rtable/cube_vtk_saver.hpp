@@ -11,6 +11,7 @@
 #include <fmt/core.h>
 #include <fmt/ostream.h>
 #include <fmt/format.h>
+#include <fmt/os.h>
 #include <geometry/geometry.hpp>
 #include <stg_tensor/tensor.hpp>
 #include "cube_relation_table.hpp"
@@ -37,10 +38,10 @@ namespace stg::mesh {
       using IterValueType = typename std::iterator_traits<Iter>::value_type;
       const std::size_t size = std::distance(begin, end);
       write_point_data_header(size);
-      fmt::print(file_, "SCALARS {} double\n", table_name);
-      fmt::print(file_, "LOOKUP_TABLE default\n");
-      std::copy(begin, end, std::ostream_iterator<IterValueType>{file_, "\n"});
-      file_ << std::endl;
+      file_.print("SCALARS {} double\n", table_name);
+      file_.print("LOOKUP_TABLE default\n");
+      file_.print("{}", fmt::join(begin, end, "\n"));
+      file_.print("\n");
     }
 
     template<std::forward_iterator Iter>
@@ -48,14 +49,14 @@ namespace stg::mesh {
                           std::string_view table_name = "VectorField") {
       const std::size_t size = std::distance(begin, end);
       write_point_data_header(size);
-      fmt::print(file_, "VECTORS {} double\n", table_name);
+      file_.print("VECTORS {} double\n", table_name);
       std::for_each(begin, end, [&](const auto& vector) {
-        fmt::print(file_, "{} {} {}\n",
+        file_.print("{} {} {}\n",
                    vector.template get<0>(),
                    vector.template get<1>(),
                    vector.template get<2>());
       });
-      file_ << std::endl;
+      file_.print("\n");
     }
 
     template<ranges::viewable_range Range>
@@ -63,12 +64,12 @@ namespace stg::mesh {
                             std::string_view table_name = "VectorField") {
       const std::size_t size = ranges::distance(range);
       write_point_data_header(size);
-      fmt::print(file_, "VECTORS {} double\n", table_name);
+      file_.print("VECTORS {} double\n", table_name);
       ranges::for_each(range, [&](const auto& vec_zip) {
                                 const auto [x, y, z] = vec_zip;
-                                fmt::print(file_, "{} {} {}\n", x, y, z);
+                                file_.print("{} {} {}\n", x, y, z);
                               });
-      file_ << std::endl;
+      file_.print("\n");
     }
 
     template<std::forward_iterator Iter>
@@ -78,35 +79,27 @@ namespace stg::mesh {
       using TensorValueType = typename IterValueType::value_type;
       const std::size_t size = std::distance(begin, end);
       write_point_data_header(size);
-      fmt::print(file_, "TENSORS {} double\n", table_name);
+      file_.print("TENSORS {} double\n", table_name);
       std::for_each(begin, end, [&](const auto& tensor) {
-        std::copy(tensor.cbegin(), tensor.cend(), std::ostream_iterator<TensorValueType>{file_, " "});
-        file_ << std::endl;
+        file_.print("{}", fmt::join(tensor.cbegin(), tensor.cend(), " "));
+        file_.print("\n");
       });
-      file_ << std::endl;
+      file_.print("\n");
     }
 
-    ~VtkRectilinearGridSaver() {
-      // Уточнить насчёт RAII
-      if (file_.is_open()) {
-        file_.close();
-      }
-    }
+    ~VtkRectilinearGridSaver() { }
 
   private:
-    std::ofstream file_;
+    fmt::ostream file_;
     mutable bool has_point_data_flag_ = false;
 
-    static std::ofstream open_file(std::string_view filename) {
-      std::filesystem::path path = std::filesystem::absolute(filename);
-      if (!std::filesystem::exists(path)) {
-        std::filesystem::create_directories(path.parent_path());
-      }
-      return std::ofstream{path, std::ios_base::out};
+    fmt::ostream open_file(std::string_view filename) {
+      return fmt::output_file(filename.data(),
+        fmt::file::CREATE | fmt::file::WRONLY | fmt::file::APPEND);
     }
 
     void write_header(std::size_t dimensions) {
-      fmt::print(file_, "# vtk DataFile Version 2.0\n"
+      file_.print("# vtk DataFile Version 2.0\n"
                         "Function\n"
                         "ASCII\n"
                         "DATASET RECTILINEAR_GRID\n"
@@ -117,7 +110,7 @@ namespace stg::mesh {
 
     void write_point_data_header(std::size_t size) {
       if (!has_point_data_flag_) {
-        fmt::print(file_, "POINT_DATA {}\n", size);
+        file_.print("POINT_DATA {}\n", size);
         has_point_data_flag_ = true;
       }
     }
@@ -134,27 +127,26 @@ namespace stg::mesh {
                                     std::size_t points_num,
                                     std::string_view component) {
       using IterValueType = typename std::iterator_traits<Iter>::value_type;
-      fmt::print(file_, "{}_COORDINATES {} double\n", component, points_num);
-      std::copy(begin, end, std::ostream_iterator<IterValueType>{file_, "\n"});
-      file_ << std::endl;
+      file_.print("{}_COORDINATES {} double\n", component, points_num);
+      file_.print("{}", fmt::join(begin, end, "\n"));
+      file_.print("\n");
     }
 
     template<std::forward_iterator Iter>
     void write_cell_data(Iter begin, Iter end, size_t elements_amount) {
       fmt::print(file_, "CELLS {} {}\n", elements_amount, bounded_vertices(begin, end));
       std::for_each(begin, end, [&](const auto& value) {
-        file_ << value.size() << " ";
-        std::copy(value.cbegin(), value.cend(), std::ostream_iterator<size_t>{file_, " "});
-        file_ << std::endl;
+        file_.print("{} {}", value.size(), fmt::join(value, " "));
+        file_.print("\n");
       });
-      file_ << std::endl;
+      file_.print("\n");
     }
 
     template<std::forward_iterator Iter>
     void write_cell_types_data(Iter begin, Iter end, size_t elements_amount) {
-      fmt::print(file_, "CELL_TYPES {}\n", elements_amount);
-      std::copy(begin, end, std::ostream_iterator<size_t>{file_, "\n"});
-      file_ << std::endl;
+      file_.print("CELL_TYPES {}\n", elements_amount);
+      file_.print("{}", fmt::join(begin, end, "\n"));
+      file_.print("\n");
     }
 
     template<std::forward_iterator Iter>

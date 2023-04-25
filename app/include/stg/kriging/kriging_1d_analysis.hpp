@@ -110,6 +110,19 @@ using namespace stg::statistics;
       return abs_dev_mean;
     }
 
+    value_type peaks_deviation() const {
+        const auto center_index = real_space_mesh_->relation_table()->center_lin_index();
+        const auto result = calc_covariations_[center_index] - covariations_[center_index];
+        return result;
+    }
+
+    value_type integrate_square_diff() const {
+      auto calc_cov_v = calc_covariations_ | rv::all;
+      auto data_cov_v = covariations_ | rv::all;
+      auto sqr_diff_view = Deviation::deviation_range_sqr(calc_cov_v, data_cov_v);
+      return real_space_mesh_->integrate(sqr_diff_view);
+    }
+
     void save_calculated_covariations(std::string_view filepath,
                                       std::string_view table_name = "TableName") const {
       VtkRectilinearGridSaver saver{filepath};

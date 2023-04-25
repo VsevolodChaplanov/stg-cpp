@@ -71,7 +71,8 @@ target_link_libraries(${APPLICATION_TESTS} PUBLIC
   ${STG_MESH_LIB}
   CONAN_PKG::boost
   CONAN_PKG::range-v3
-  CONAN_PKG::catch2)
+  CONAN_PKG::catch2
+  stdc++fs)
 
 target_link_directories(${APPLICATION_TESTS} PUBLIC
   ${STG_VELOCITY_FIELD_INCLUDE_DIR}

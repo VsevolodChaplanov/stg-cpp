@@ -1,8 +1,0 @@
-C:\Windows\system32\wsl.exe --distribution Ubuntu --exec /bin/bash -c "export CMAKE_COLOR_DIAGNOSTICS=ON && export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd /home/vsevolod/coding/cpp/stg-cpp/cmake-build-release && /usr/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=/usr/bin/gcc-12 '-DCMAKE_CXX_COMPILER=/usr/bin/g++-12' -G 'CodeBlocks - Unix Makefiles' -S /home/vsevolod/coding/cpp/stg-cpp -B /home/vsevolod/coding/cpp/stg-cpp/cmake-build-release"
-CMake Error at CMakeLists.txt:20:
-  Parse error.  Expected a command name, got unquoted argument with text
-  "<<<<<<<".
-
-
--- Configuring incomplete, errors occurred!
-See also "/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/CMakeFiles/CMakeOutput.log".

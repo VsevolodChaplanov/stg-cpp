@@ -2,7 +2,11 @@
 #include <vector>
 #include <range/v3/all.hpp>
 #include <statistics.hpp>
+#include <filesystem>
+#include <fstream>
 
+
+/*
 using namespace stg::statistics;
 
 class VelocityField final {
@@ -64,9 +68,14 @@ public:
 private:
   std::vector<VelocityField> velocity_samples_;
 };
+*/
 
 int main() {
-  std::vector<VelocityField> sample(5);
+/*
+  std::filesystem::path path("/home/vsevolod/temp.log");
+  std::fstream file{path.string(), std::ios_base::out};
+  file << "hello world";*/
+/*  std::vector<VelocityField> sample(5);
   VelocitySamples samples(5);
 
   for (const auto& val : samples.vx_component_for_vertex(1)) {
@@ -93,7 +102,7 @@ int main() {
                                                           f_y_range, s_y_range,
                                                           f_z_range, s_z_range);
 
-  return EXIT_SUCCESS;
+  return EXIT_SUCCESS;*/
 }
 
 

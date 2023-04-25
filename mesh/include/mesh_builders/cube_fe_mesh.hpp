@@ -114,8 +114,7 @@ namespace stg::mesh {
 
     ElementsIterator cend_elements() const noexcept { return fe_elements_.cend(); }
 
-    ranges::views::view_closure<ranges::views::all_fn>
-    elements_view() const noexcept { return ranges::view::all(fe_elements_); }
+    auto elements_view() const noexcept { return ranges::view::all(fe_elements_); }
 
     std::array<std::size_t, 3> center_tri_index() const {
       return cube_relation_table_->center_tri_index();
@@ -138,6 +137,22 @@ namespace stg::mesh {
       }
       std::vector<value_type> values_converted{ranges::begin(values), ranges::end(values)};
       auto result = element->interpolate(param_point_in_element, values_converted);
+      return result;
+    }
+
+    template<std::ranges::viewable_range Range>
+    value_type integrate(Range&& values) const {
+      value_type result = 0.;
+      for (auto elem : fe_elements_) {
+        const auto indices = elem->global_indices();
+        std::vector<value_type> element_values(elem->basis_functions_n());
+        for (const auto ind : rv::iota(0ull, elem->basis_functions_n())) {
+          element_values[ind] = values[indices[ind]];
+        }
+        const auto elem_integral = elem->integrate(element_values);
+        result += elem_integral;
+      }
+
       return result;
     }
 

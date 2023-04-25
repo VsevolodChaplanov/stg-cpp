@@ -122,6 +122,8 @@ namespace stg::mesh {
 
     virtual std::array<Vector<T>, np> basis_gradients_at_point(Point<T> point) const = 0;
   };
+
+
 }
 
 #endif //STG_IFINITE_ELEMENT_HPP
