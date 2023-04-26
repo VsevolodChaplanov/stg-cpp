@@ -40,10 +40,6 @@ using namespace stg::statistics;
 
     const std::vector<Tensor<value_type>> calculate_covariations() {
       const auto center_vert_tri_index = real_space_mesh_->center_tri_index();
-      const auto center_vert = real_space_mesh_->relation_table()->vertex(
-          center_vert_tri_index[0],
-          center_vert_tri_index[1],
-          center_vert_tri_index[2]);
       const auto lin_center_index = real_space_mesh_->center_lin_index();
 
       try {

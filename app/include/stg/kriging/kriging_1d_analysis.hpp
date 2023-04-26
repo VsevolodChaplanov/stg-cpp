@@ -39,7 +39,6 @@ using namespace stg::statistics;
 
     const std::vector<value_type> calculate_covariations() {
       const auto center_vert_lin_index = real_space_mesh_->center_lin_index();
-      const auto center_vert = real_space_mesh_->relation_table()->vertex(center_vert_lin_index);
 
       auto center_velocity_sample_x = velocity_samples_.vx_component_for_vertex(center_vert_lin_index);
 

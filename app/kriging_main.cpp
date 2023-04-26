@@ -4,7 +4,6 @@ using namespace stg::kriging;
 
 
 int main() {
-  const std::size_t n = 51;
   DataLoader data_loader{"test_resources/"};
   KrigingAnalysis<double> kriging_test{data_loader};
 

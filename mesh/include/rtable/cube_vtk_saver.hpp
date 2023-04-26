@@ -35,7 +35,6 @@ namespace stg::mesh {
     template<std::forward_iterator Iter>
     void save_scalar_data(Iter begin, Iter end,
                           std::string_view table_name = "DefaultTable") {
-      using IterValueType = typename std::iterator_traits<Iter>::value_type;
       const std::size_t size = std::distance(begin, end);
       write_point_data_header(size);
       file_.print("SCALARS {} double\n", table_name);
@@ -75,8 +74,6 @@ namespace stg::mesh {
     template<std::forward_iterator Iter>
     void save_tensor_data(Iter begin, Iter end,
                           std::string_view table_name = "TensorData") {
-      using IterValueType = typename std::iterator_traits<Iter>::value_type;
-      using TensorValueType = typename IterValueType::value_type;
       const std::size_t size = std::distance(begin, end);
       write_point_data_header(size);
       file_.print("TENSORS {} double\n", table_name);
@@ -126,7 +123,6 @@ namespace stg::mesh {
     void write_coordinate_component(Iter begin, Iter end,
                                     std::size_t points_num,
                                     std::string_view component) {
-      using IterValueType = typename std::iterator_traits<Iter>::value_type;
       file_.print("{}_COORDINATES {} double\n", component, points_num);
       file_.print("{}", fmt::join(begin, end, "\n"));
       file_.print("\n");

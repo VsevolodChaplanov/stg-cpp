@@ -132,7 +132,7 @@ namespace stg::mesh {
           element_base_indices[1],
           element_base_indices[2]);
       const auto& element = fe_elements_[element_index];
-      if (ranges::distance(values) != element->basis_functions_n()) {
+      if (static_cast<std::size_t>(ranges::distance(values)) != element->basis_functions_n()) {
         throw std::logic_error("Range values not same with amount of element vertices");
       }
       std::vector<value_type> values_converted{ranges::begin(values), ranges::end(values)};
