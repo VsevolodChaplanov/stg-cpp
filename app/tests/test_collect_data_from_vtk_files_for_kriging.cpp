@@ -28,7 +28,7 @@ struct DataLoadingFixture {
 
   static inline const auto floating_point_eq = [] (auto it1, auto it2, auto it3, auto it4) {
     REQUIRE(std::distance(it1, it2) == std::distance(it3, it4));
-    for (; it1 != it2, it3 != it4; ++it1, ++it3) {
+    for (; it1 != it2; ++it1, ++it3) {
       CHECK_THAT(*it1, WithinRel(*it3, 1.e-6));
     }
   };

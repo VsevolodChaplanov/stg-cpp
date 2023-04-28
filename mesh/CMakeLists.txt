@@ -6,7 +6,7 @@ file(GLOB_RECURSE SOURCES
   ${STG_MESH_ROOT_DIR}/src/*.cpp
   ${STG_MESH_INCLUDE_DIR}/statistics/*.hpp)
 
-add_library(${STG_MESH_LIB} STATIC ${SOURCES} include/fem/element_mixins.hpp)
+add_library(${STG_MESH_LIB} STATIC ${SOURCES})
 
 target_link_libraries(${STG_MESH_LIB} PUBLIC
   ${STG_TENSOR_MATRIX_LIB}

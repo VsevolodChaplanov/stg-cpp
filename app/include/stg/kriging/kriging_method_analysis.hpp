@@ -39,7 +39,6 @@ using namespace stg::statistics;
     auto fert_view() { return ranges::views::all(fert_values_); }
 
     const std::vector<Tensor<value_type>> calculate_covariations() {
-      const auto center_vert_tri_index = real_space_mesh_->center_tri_index();
       const auto lin_center_index = real_space_mesh_->center_lin_index();
 
       try {
@@ -51,13 +50,6 @@ using namespace stg::statistics;
           auto center_velocity_sample_x = velocity_samples_.vx_component_for_vertex(lin_center_index);
           auto center_velocity_sample_y = velocity_samples_.vy_component_for_vertex(lin_center_index);
           auto center_velocity_sample_z = velocity_samples_.vz_component_for_vertex(lin_center_index);
-
-          assert(ranges::distance(vertex_velocity_sample_x) == velocity_samples_.size());
-          assert(ranges::distance(vertex_velocity_sample_y) == velocity_samples_.size());
-          assert(ranges::distance(vertex_velocity_sample_z) == velocity_samples_.size());
-          assert(ranges::distance(center_velocity_sample_x) == velocity_samples_.size());
-          assert(ranges::distance(center_velocity_sample_y) == velocity_samples_.size());
-          assert(ranges::distance(center_velocity_sample_z) == velocity_samples_.size());
 
           // Assumes that fluctuations has zero mean
           auto &&covariance = SpaceCovariance::covariance_tensor(center_velocity_sample_x, vertex_velocity_sample_x,
