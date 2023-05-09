@@ -23,9 +23,10 @@ using namespace stg::field;
     template<std::floating_point T>
     std::shared_ptr<CubeFiniteElementsMesh<T>> load_mesh(std::string_view file_with_grid) const {
       std::stringstream sstream;
-      sstream << work_dir_.string() << file_with_grid;
+      auto wd = work_dir_;
+      wd.append(file_with_grid);
       const std::string grid_filename{sstream.str()};
-      RectilinearGridParser parser{grid_filename};
+      RectilinearGridParser parser{wd.string()};
 
       return parser.fe_mesh<T>();
     }
@@ -33,7 +34,7 @@ using namespace stg::field;
     template<std::floating_point T>
     std::vector<T> load_scalar_data(std::string_view filename) const {
       auto path_to_file = work_dir_;
-      path_to_file += fs::path{filename};
+      path_to_file.append(filename);
       RectilinearGridParser parser{path_to_file.string()};
       return parser.scalar_data<T>();
     }

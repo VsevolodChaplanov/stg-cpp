@@ -14,6 +14,5 @@ SCENARIO_METHOD(SpectralAppFixture, "Simple generation procedure to check algos"
   spectral_generation_method.generate_samples_on_mesh(0);
   spectral_generation_method.generate_correlations_relative_to_space_center();
 
-
   spectral_generation_method.save_to_vtk(filename);
 }
