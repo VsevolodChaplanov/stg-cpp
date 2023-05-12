@@ -86,8 +86,7 @@ using namespace stg::statistics;
       }
     }
 
-    void run_along_files(std::size_t amount) {
-      for (const std::size_t c_try : rv::iota(0ull, amount)) {
+    void run_along_files(std::size_t amount) {for (const std::size_t c_try : rv::iota(0ull, amount)) {
         const std::string filename = fmt::format("sg1_L{}_N{}_eigcut{}_try{}.vtk", params_.L, params_.N, params_.eigen_cut, c_try);
         covariances_for_file(filename);
       }

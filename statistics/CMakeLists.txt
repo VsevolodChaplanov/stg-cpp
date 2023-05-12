@@ -12,11 +12,13 @@ target_link_libraries(${STG_STATISTICS_LIB} PUBLIC
   ${STG_RNGENERATOR_LIB}
   ${STG_TENSOR_MATRIX_LIB}
   CONAN_PKG::boost
+  CONAN_PKG::fmt
   CONAN_PKG::range-v3)
 target_link_directories(${STG_STATISTICS_LIB} PUBLIC
   ${STG_RNGENERATOR_INCLUDE_DIR}
   ${STG_TENSOR_MATRIX_INCLUDE_DIR}
   CONAN_PKG::boost
+  CONAN_PKG::fmt
   CONAN_PKG::range-v3)
 target_include_directories(${STG_STATISTICS_LIB} PUBLIC
   ${STG_VELOCITY_FIELD_INCLUDE_DIR}
@@ -24,6 +26,7 @@ target_include_directories(${STG_STATISTICS_LIB} PUBLIC
   ${STG_TENSOR_MATRIX_INCLUDE_DIR}
   ${STG_STATISTICS_INCLUDE_DIR}
   CONAN_PKG::boost
+  CONAN_PKG::fmt
   CONAN_PKG::range-v3)
 
 #####################

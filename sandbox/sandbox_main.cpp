@@ -71,6 +71,10 @@ private:
 */
 
 int main() {
+
+  auto const v = std::vector<int> {1,2,3,4, 5};
+  auto val = ranges::accumulate(v, 1, [](int a, int b){return a * b;}); // 24
+  std::cout << val << std::endl;
 /*
   std::filesystem::path path("/home/vsevolod/temp.log");
   std::fstream file{path.string(), std::ios_base::out};
