@@ -27,8 +27,8 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 // MinSizeRel ...
 CMAKE_BUILD_TYPE:STRING=Release
 
-//No help, variable specified on the command line.
-CMAKE_CXX_COMPILER:UNINITIALIZED=/usr/bin/g++-12
+//CXX compiler
+CMAKE_CXX_COMPILER:STRING=/usr/bin/g++-12
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -53,8 +53,8 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//No help, variable specified on the command line.
-CMAKE_C_COMPILER:UNINITIALIZED=/usr/bin/gcc-12
+//C compiler
+CMAKE_C_COMPILER:STRING=/usr/bin/gcc-12
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -107,7 +107,7 @@ CMAKE_INSTALL_PREFIX:PATH=/usr/local
 CMAKE_LINKER:FILEPATH=/usr/bin/ld
 
 //No help, variable specified on the command line.
-CMAKE_MAKE_PROGRAM:UNINITIALIZED=/home/vsevolod/.cache/JetBrains/RemoteDev/dist/3c8ecd31118eb_CLion-2023.1.1/bin/ninja/linux/x64/ninja
+CMAKE_MAKE_PROGRAM:UNINITIALIZED=/home/vsevolod/.cache/JetBrains/RemoteDev/dist/d7cdd13ba7998_CLion-2023.1.2/bin/ninja/linux/x64/ninja
 
 //Flags used by the linker during the creation of modules during
 // all build types.

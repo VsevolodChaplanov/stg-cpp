@@ -52,7 +52,7 @@ namespace rv = ranges::views;
 
 
     template<NumericViewable FirstRange, NumericViewable SecondRange, std::floating_point MeanValueType>
-    static auto std(FirstRange f_range, SecondRange s_range, MeanValueType f_mean, MeanValueType s_mean) {
+    static auto std(FirstRange&& f_range, SecondRange&& s_range, MeanValueType f_mean, MeanValueType s_mean) {
       const std::size_t f_size = ranges::distance(f_range);
       const std::size_t s_size = ranges::distance(s_range);
       if (f_size != s_size) throw std::invalid_argument("Ranges have different lengths");
@@ -66,7 +66,7 @@ namespace rv = ranges::views;
     }
 
     template<NumericViewable FirstRange, NumericViewable SecondRange>
-    static auto std(FirstRange f_range, SecondRange s_range) {
+    static auto std(FirstRange&& f_range, SecondRange&& s_range) {
       auto f_mean = std::async(std::launch::async, [f_range] {return Mean::mean(f_range); });
       auto s_mean = std::async(std::launch::async, [s_range] {return Mean::mean(s_range); });
       return std(std::forward<FirstRange>(f_range),
@@ -101,14 +101,14 @@ namespace rv = ranges::views;
     };
   }
 
-  class StdTime final {
+  class StdIntegralAveraged final {
   public:
 
     /*
      * Vert-based algorithm
      */
     template<NumericViewable Function, std::floating_point TimeDelta = ranges::range_value_t<Function>>
-    static auto std_time_averaged(Function&& function, TimeDelta dtime, TimeDelta time_period) {
+    static auto std_integral_averaged(Function&& function, TimeDelta dtime, TimeDelta time_period) {
       using function_value_t = typename ranges::range_value_t<Function>;
       static_assert(std::is_convertible_v<function_value_t, TimeDelta>
                     && std::is_convertible_v<TimeDelta, function_value_t>,
@@ -127,7 +127,7 @@ namespace rv = ranges::views;
              NumericViewable TimePoints,
              std::floating_point MeanType = ranges::range_value_t<Function>,
              std::floating_point TimeType = ranges::range_value_t<TimePoints>>
-    static auto std_time_averaged(Function&& function, MeanType mean, TimePoints time_points, TimeType period) {
+    static auto std_integral_averaged(Function&& function, MeanType mean, TimePoints time_points, TimeType period) {
       auto function_squared = function | rv::transform([mean](auto value) { return (value - mean) * (value - mean); });
       auto result = detail::Integrator::integrate_trapezoidal_method(
           function_squared, std::forward<TimePoints>(time_points)

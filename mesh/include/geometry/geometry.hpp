@@ -102,6 +102,12 @@ namespace stg {
                  - first.template get<1>() * second.template get<0>();
     return {xx, yy, zz};
   }
+
+  template<std::floating_point T>
+  Vector<T> scale_to_length(const Vector<T>& vector, T length) {
+    const auto ex_len = std::sqrt(dot_product(vector, vector));
+    return vector * ex_len / length;
+  }
 }
 
 #endif //STG_GEOMETRY_HPP

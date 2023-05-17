@@ -2,29 +2,19 @@
 #include <numbers>
 
 struct AveragedOverTimeStdFixture {
-  const std::size_t n = 10;
+  const std::size_t points_amount = 1000;
   const double period = std::numbers::pi / 2;
 };
 
 SCENARIO_METHOD(AveragedOverTimeStdFixture, "Test average over time algorithms") {
-  const std::size_t points_amount = 10;
-  auto function = [](double x) {
-    static double epi = std::pow(std::numbers::e, std::numbers::pi);
-    return 1.;
-    return 5 / (epi - 2) * std::pow(std::numbers::e, /*2 **/ x) * std::cos(x);
-  };
-
   {
-    auto function = [](double x) {
-      static double epi = std::pow(std::numbers::e, std::numbers::pi);
-      return 1.;
-    };
+    auto function = [](double x) { return 1.; };
     const double dh = period / (points_amount - 1);
     auto function_view = rv::iota(0ull, points_amount)
                          | rv::transform([dh](auto val) { return val * dh; })
                          | rv::transform([function](auto point) { return function(point); });
-    const auto result = StdTime::std_time_averaged(function_view, dh, period);
-    CHECK_THAT(result, WithinRel(0.14082702324, 1.e-4));
+    const auto result = StdIntegralAveraged::std_integral_averaged(function_view, dh, period);
+    CHECK_THAT(result, WithinRel(1., 1.e-4));
   }
 
   {
@@ -35,21 +25,21 @@ SCENARIO_METHOD(AveragedOverTimeStdFixture, "Test average over time algorithms")
     auto function_view = rv::iota(0ull, points_amount)
                          | rv::transform([dh](auto val) { return val * dh; })
                          | rv::transform([function](auto point) { return function(point); });
-    const auto result = StdTime::std_time_averaged(function_view, dh, period);
-    CHECK_THAT(result, WithinRel(std::numbers::pi / 2, 1.e-4));
+    const auto result = StdIntegralAveraged::std_integral_averaged(function_view, dh, period);
+    CHECK_THAT(result, WithinRel(0.78540, 1.e-4));
   }
 
   {
     auto function = [](double x) {
       static double epi = std::pow(std::numbers::e, std::numbers::pi);
-      return 5 / (epi - 2) * std::pow(std::numbers::e, /*2 **/ x) * std::cos(x);
+      return 5 / (epi - 2) * std::pow(std::numbers::e, 2 *x) * std::cos(x);
     };
     const double dh = period / (points_amount - 1);
     auto function_view = rv::iota(0ull, points_amount)
                          | rv::transform([dh](auto val) { return val * dh; })
                          | rv::transform([function](auto point) { return function(point); });
-    const auto result = StdTime::std_time_averaged(function_view, dh, period);
-    CHECK_THAT(result, WithinRel(0.14082702324, 1.e-4));
+    const auto result = StdIntegralAveraged::std_integral_averaged(function_view, dh, period);
+    CHECK_THAT(result, WithinRel(0.46872, 1.e-4));
   }
 
   {
@@ -61,8 +51,18 @@ SCENARIO_METHOD(AveragedOverTimeStdFixture, "Test average over time algorithms")
     auto function_view = rv::iota(0ull, points_amount)
                          | rv::transform([dh](auto val) { return val * dh; })
                          | rv::transform([function](auto point) { return function(point); });
-    const auto result = StdTime::std_time_averaged(function_view, dh, period);
-    CHECK_THAT(result, WithinRel(0.14082702324, 1.e-4));
+    const auto result = StdIntegralAveraged::std_integral_averaged(function_view, dh, period);
+    CHECK_THAT(result, WithinRel(0.079533, 1.e-4));
+  }
+
+  {
+    auto function = [](double x) { return x; };
+    const double dh = period / (points_amount - 1);
+    auto function_view = rv::iota(0ull, points_amount)
+                         | rv::transform([dh](auto val) { return val * dh; })
+                         | rv::transform([function](auto point) { return function(point); });
+    const auto result = StdIntegralAveraged::std_integral_averaged(function_view, dh, period);
+    CHECK_THAT(result, WithinRel(0.82247, 1.e-4));
   }
 }
 
