@@ -188,7 +188,8 @@ namespace engines = stg::generator_engines;
     SpectralGeneratorV2(std::size_t seed_for_generators,
                         value_type ampl_mean, value_type ampl_std,
                         value_type wv_mean, value_type wv_std,
-                        value_type freq_mean, value_type freq_std)
+                        value_type freq_mean, value_type freq_std,
+                        value_type length_scale, value_type time_scale)
       : SpectralGeneratorV2(std::make_shared<RNGenerator<std::mt19937_64, std::normal_distribution<>>>(
                               engines::get_engine<std::mt19937_64>(seed_for_generators),
                               std::normal_distribution(ampl_mean, ampl_std)
@@ -214,8 +215,10 @@ namespace engines = stg::generator_engines;
                       std::shared_ptr<FrequenciesGenerator> frequencies_generator,
                       std::shared_ptr<WaveVectorGenerator> wave_vector_generator,
                       std::shared_ptr<IRNGenerator<value_type>> rand_param_generator,
-                      stg::tensor::Tensor<value_type> reynolds_tensor)
+                      stg::tensor::Tensor<value_type> reynolds_tensor,
+                      value_type length_scale, value_type time_scale)
         : lower_triangular_{reynolds_tensor.cholesky()}
+        , length_scale_{length_scale}, time_scale_{time_scale}
         , amplitude_generator_{std::move(amplitude_generator)}
         , wave_vector_generator_{std::move(wave_vector_generator)}
         , frequencies_generator_{std::move(frequencies_generator)}
@@ -253,16 +256,34 @@ namespace engines = stg::generator_engines;
         const auto a_coeff = random_coeffs_[index];
 
         mode_fluctuations_generators_[index] = SpectralModeFluctuationGenerator::create(
-            fourier_modes_n_,
-            amplitude_generator_,
-            frequencies_generator_,
-            wave_vector_generator_,
-            a_coeff, spectra_->operator()(k_module), k_module);
+          fourier_modes_n_,
+          amplitude_generator_,
+          frequencies_generator_,
+          wave_vector_generator_,
+          a_coeff, spectra_->operator()(k_module), k_module,
+          scale_factor_,
+          { lower_triangular_.get(0, 0), lower_triangular_.get(1, 1), lower_triangular_.get(2, 2) }
+        );
       }
     }
 
     Vector<T> operator()(const Point<T> &real_space_point, T time) const override {
+      Vector<T> result;
+      Point<T> scaled_vert{real_space_point.template get<0>() / length_scale_,
+                           real_space_point.template get<1>() / length_scale_,
+                           real_space_point.template get<2>() / length_scale_,};
+      time /= time_scale_;
+      for (const auto& inner_generator: mode_fluctuations_generators_) {
+        result += inner_generator(scaled_vert, time);
+      }
 
+      return result;
+    }
+
+    value_type max_period() const {
+      return std::ranges::min(mode_fluctuations_generators_ | std::views::transform([](const auto& gen) {
+        return std::ranges::min(gen.frequencies_);
+      });
     }
 
     ~SpectralGeneratorV2() override = default;
@@ -281,11 +302,21 @@ namespace engines = stg::generator_engines;
       std::vector<Vector<value_type>> p_vectors_;
       std::vector<Vector<value_type>> q_vectors_;
       std::vector<value_type> frequencies_;
-      // to solve \sum_n \vec{p}^2 + \vec{q}^2 = 4E(k_m)
+
+      Vector<value_type> operator()(const Point<value_type>& point, value_type time) const {
+        Vector<value_type> result;
+
+        for (const std::size_t node : std::views::iota(0ull, fourier_modes_n_)) {
+          const auto phase = dot_product(wave_vectors_[node], point) + frequencies_[node] * time;
+          result += p_vectors_[node] * std::cos(phase) + q_vectors_[node] * std::sin(phase);
+        }
+
+        return result * std::sqrt(2. / fourier_modes_n_);
+      }
 
       template<stg::concepts::GeneratorConcept AmplitudeGenerator,
           stg::concepts::GeneratorConcept FrequenciesGenerator,
-          stg::concepts::GeneratorConcept WaveVectorsGenarator,
+          stg::concepts::GeneratorConcept WaveVectorsGenerator,
           std::floating_point CoeffType,
           std::floating_point EnergyValueType,
           std::floating_point WaveVectorModuleType>
@@ -293,20 +324,13 @@ namespace engines = stg::generator_engines;
           std::size_t fourier_modes_n,
           std::shared_ptr<AmplitudeGenerator> ampl_generator,
           std::shared_ptr<FrequenciesGenerator> frequencies_generator,
-          std::shared_ptr<WaveVectorsGenarator> wave_vectors_generator,
-          CoeffType random_coeff, EnergyValueType energy, WaveVectorModuleType k_module) {
+          std::shared_ptr<WaveVectorsGenerator> wave_vectors_generator,
+          CoeffType random_coeff, EnergyValueType energy, WaveVectorModuleType k_module,
+          value_type scale_coeff, std::array<value_type, 3> diagonal) {
         SpectralModeFluctuationGenerator generator;
-        auto freq_future = std::async(std::launch::async,
-          &SpectralModeFluctuationGenerator::initialize_frequencies, generator, frequencies_generator);
-        auto wave_vectors_future = std::async(
-            &SpectralModeFluctuationGenerator::initialize_wave_vectors,
-            generator, wave_vectors_generator, k_module);
-        wave_vectors_future.wait();
-
+        generator.initialize_frequencies(frequencies_generator);
+        generator.initialize_wave_vectors(wave_vectors_generator, k_module, scale_coeff, diagonal);
         generator.initialize_amplitudes(ampl_generator, energy, random_coeff);
-
-        freq_future.wait();
-
         return generator;
       }
 
@@ -346,10 +370,16 @@ namespace engines = stg::generator_engines;
       }
 
       template<stg::concepts::GeneratorConcept WaveVectorsGenerator>
-      void initialize_wave_vectors(std::shared_ptr<WaveVectorsGenerator> wave_vectors_generator, value_type k_module) {
+      void initialize_wave_vectors(std::shared_ptr<WaveVectorsGenerator> wave_vectors_generator, value_type k_module,
+                                   value_type scale_coeff, std::array<value_type, 3> diagonal) {
         wave_vectors_.resize(fourier_modes_n_);
-        std::ranges::generate(wave_vectors_, [gen = std::move(wave_vectors_generator), k_module, this] () {
-          return generate_vector_with_length(gen, k_module);
+        std::ranges::generate(wave_vectors_, [gen = std::move(wave_vectors_generator), k_module,
+                                              scale_coeff, diagonal ,this] () {
+          auto generated = generate_vector_with_length(gen, k_module);
+          generated = {generated.template get<0>() * scale_coeff / diagonal[0],
+                       generated.template get<1>() * scale_coeff / diagonal[1],
+                       generated.template get<2>() * scale_coeff / diagonal[2]};
+          return generated;
         });
       }
 
@@ -362,7 +392,7 @@ namespace engines = stg::generator_engines;
         return scale_to_length(vec, len);
       };
 
-      template<std::ranges::viewable_range SpectraFunction>
+/*      template<std::ranges::viewable_range SpectraFunction>
       NodesAmplitudes generate_fourier_modes_vectors_amplitudes(SpectraFunction&& function,
                                                                 value_type a_m, std::size_t n) const {
         std::vector<value_type> p, q;
@@ -378,12 +408,14 @@ namespace engines = stg::generator_engines;
                                return std::sqrt((1 - a_m) * e_m * 4 / n);
                              });
         return { p ,q };
-      }
+      }*/
     };
 
     const std::size_t spectra_n_;
     const std::size_t fourier_modes_n_;
     const tensor::Tensor<value_type> lower_triangular_;
+    const value_type length_scale_, time_scale_;
+    const value_type scale_factor_ = length_scale_ / time_scale_;
     const std::shared_ptr<IRNGenerator<value_type>> amplitude_generator_;
     const std::shared_ptr<IRNGenerator<value_type>> wave_vector_generator_;
     const std::shared_ptr<IRNGenerator<value_type>> frequencies_generator_;

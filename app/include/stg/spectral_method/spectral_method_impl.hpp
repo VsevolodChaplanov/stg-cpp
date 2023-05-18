@@ -11,6 +11,7 @@
 #include <velocity_field.hpp>
 #include <stg_generators.hpp>
 #include <statistics.hpp>
+#include "data_loader.hpp"
 
 namespace stg::spectral {
 using namespace stg::mesh;
@@ -214,6 +215,68 @@ namespace rv = ranges::views;
       }
       velocity_samples_.set_sample(std::move(sample), isample);
     }
+  };
+
+
+  namespace fs = std::filesystem;
+  template<std::floating_point T>
+  class SpectralParameters final {
+    std::size_t seed;
+    T ampl_mean, ampl_std;
+    T wv_mean, wv_std;
+    T freq_mean, freq_std;
+    T cube_edge_len;
+    T k_min, k_max;
+    T length_scale, time_scale;
+    std::size_t n_spectra, n_fourier;
+    std::size_t edge_points;
+    fs::path save_data_dir_path;
+  };
+
+  template<std::floating_point T>
+  class SpectralMethodApplication final {
+  public:
+    using value_type = T;
+
+    SpectralMethodApplication(DataLoader loader, SpectralParameters<value_type> params)
+      : loader_{std::move(loader)}
+      , parameters_{std::move(params)}
+    { }
+
+    SpectralMethodApplication(DataLoader loader, SpectralParameters<value_type> params,
+                              std::shared_ptr<SpectralGeneratorV2<value_type>> generator,
+                              const CubeMeshBuilder<value_type>& builder)
+        : loader_{std::move(loader)}
+        , parameters_{std::move(params)}
+        , fe_mesh_{builder.build()}
+        , spectral_generator_{std::move(generator)} {
+      spectral_generator_->initialize_spectra(std::make_shared<VonKarmanSpectra<value_type>>(0.1, 100, 50));
+      spectral_generator_->initialize_wave_vector_amplitudes(parameters_.k_min, parameters_.k_max, parameters_.n_spectra);
+      spectral_generator_->initialize_random_coefficients();
+      spectral_generator_->initialize_inner_generators();
+    }
+
+    void generate_velocity_field(value_type time) {
+      for (const std::size_t g_index : rv::iota(0ull, fe_mesh_->n_vertices())) {
+        const auto vertex = fe_mesh_->relation_table()->vertex(g_index);
+      }
+    }
+
+    value_type get_max_period() const {
+      std::ranges::for_each()
+    }
+
+  private:
+    DataLoader loader_;
+    SpectralParameters<value_type> parameters_;
+    const std::shared_ptr<const CubeFiniteElementsMesh<value_type>> fe_mesh_
+      = CubeMeshBuilder<value_type>{parameters_.cube_edge_len, parameters_.edge_points}.build();
+    const std::shared_ptr<SpectralGeneratorV2<value_type>> spectral_generator_
+      = std::make_shared<SpectralGeneratorV2<value_type>>(parameters_.seed, parameters_.ampl_mean, parameters_.ampl_std,
+                                                          parameters_.wv_mean, parameters_.wv_std, parameters_,
+                                                          parameters_.freq_mean, parameters_.freq_std,
+                                                          parameters_.length_scale, parameters_.time_scale);
+    VelocityField<value_type> velocity_field_;
   };
 }
 
