@@ -58,6 +58,18 @@ namespace stg::mesh {
       file_.print("\n");
     }
 
+    template<std::ranges::viewable_range Range>
+    void save_vector_data(Range&& range, std::string_view table_name = "VectorField") {
+      const std::size_t size = std::ranges::distance(range);
+      write_point_data_header(size);
+      file_.print("VECTORS {} double\n", table_name);
+      std::ranges::for_each(std::forward<Range>(range),
+        [&](const auto& vector) {
+          file_.print("{} {} {}\n", std::get<0>(vector), std::get<1>(vector), std::get<2>(vector));
+      });
+      file_.print("\n");
+    }
+
     template<ranges::viewable_range Range>
     void save_velocity_data(Range&& range,
                             std::string_view table_name = "VectorField") {

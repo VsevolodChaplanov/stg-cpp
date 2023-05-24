@@ -23,7 +23,7 @@ SCENARIO_METHOD(StochasticGaussianMethod1D, "Collect data from stochastic gaussi
     "cut", "mean sqrt dev", "mean abs dev", "mean dev",
     "sum sqr dev", "sum abs dev", "sum dev", "peak diff", "int sqr diff");
 
-  DataLoader data_loader{std::filesystem::path(path_str)};
+  stg::kriging::DataLoader data_loader{std::filesystem::path(path_str)};
   KrigingAnalysis1D<double> kriging1d{data_loader};
 
   kriging1d.calculate_covariations();

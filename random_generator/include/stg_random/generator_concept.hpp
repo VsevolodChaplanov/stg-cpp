@@ -21,7 +21,6 @@ namespace stg::concepts {
 
   template<typename RNGenerator>
   concept GeneratorConcept = HasResultTypeConcept<RNGenerator>
-                             && std::invocable<RNGenerator>
                              && std::is_floating_point_v<typename RNGenerator::result_type>;
 }
 

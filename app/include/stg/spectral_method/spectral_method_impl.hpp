@@ -8,6 +8,7 @@
 #include <concepts>
 #include <mesh_builders.hpp>
 #include <fem.hpp>
+#include <stg_tensor/tensor.hpp>
 #include <velocity_field.hpp>
 #include <stg_generators.hpp>
 #include <statistics.hpp>
@@ -219,51 +220,61 @@ namespace rv = ranges::views;
 
 
   namespace fs = std::filesystem;
-  template<std::floating_point T>
-  class SpectralParameters final {
-    std::size_t seed;
-    T ampl_mean, ampl_std;
-    T wv_mean, wv_std;
-    T freq_mean, freq_std;
-    T cube_edge_len;
-    T k_min, k_max;
-    T length_scale, time_scale;
-    std::size_t n_spectra, n_fourier;
-    std::size_t edge_points;
-    fs::path save_data_dir_path;
-  };
 
   template<std::floating_point T>
   class SpectralMethodApplication final {
   public:
     using value_type = T;
 
-    SpectralMethodApplication(DataLoader loader, SpectralParameters<value_type> params)
-      : loader_{std::move(loader)}
-      , parameters_{std::move(params)}
+    SpectralMethodApplication(DataLoader loader, SpectralParameters<value_type> params, std::shared_ptr<ISpectra<value_type>> spectra)
+      : SpectralMethodApplication(std::move(loader), params,
+        std::make_shared<SpectralGeneratorV2<value_type>>(params),
+        CubeMeshBuilder<value_type>{params.cube_edge_len, params.edge_points},
+        std::move(spectra))
     { }
 
     SpectralMethodApplication(DataLoader loader, SpectralParameters<value_type> params,
                               std::shared_ptr<SpectralGeneratorV2<value_type>> generator,
-                              const CubeMeshBuilder<value_type>& builder)
+                              const CubeMeshBuilder<value_type>& builder,
+                              std::shared_ptr<ISpectra<value_type>> spectra)
         : loader_{std::move(loader)}
         , parameters_{std::move(params)}
         , fe_mesh_{builder.build()}
         , spectral_generator_{std::move(generator)} {
-      spectral_generator_->initialize_spectra(std::make_shared<VonKarmanSpectra<value_type>>(0.1, 100, 50));
+      spectral_generator_->initialize_spectra(spectra);
       spectral_generator_->initialize_wave_vector_amplitudes(parameters_.k_min, parameters_.k_max, parameters_.n_spectra);
       spectral_generator_->initialize_random_coefficients();
       spectral_generator_->initialize_inner_generators();
+
+      velocity_field_.resize(fe_mesh_->n_vertices());
     }
 
     void generate_velocity_field(value_type time) {
-      for (const std::size_t g_index : rv::iota(0ull, fe_mesh_->n_vertices())) {
+      auto func = [time, this] (std::size_t g_index) {
         const auto vertex = fe_mesh_->relation_table()->vertex(g_index);
+        velocity_field_.set_value(spectral_generator_->operator()(vertex, time), g_index);
+      };
+//      auto executor = pool_.get_executor();
+      for (const std::size_t g_index : rv::iota(0ull, fe_mesh_->n_vertices())) {
+        func(g_index);
+//        net::post(executor, std::bind(func, g_index));
       }
+//      pool_.join();
     }
 
     value_type get_max_period() const {
-      std::ranges::for_each()
+      auto max_period = spectral_generator_->max_period();
+      return max_period;
+    }
+
+    void save_data_to(std::filesystem::path path, std::string_view table_name = "Vector field") {
+      VtkRectilinearGridSaver saver{path.string()};
+      saver.template save_mesh<value_type>(fe_mesh_->relation_table());
+      saver.save_vector_data(velocity_field_.values_view(), table_name);
+    }
+
+    void set_spectra(std::shared_ptr<ISpectra<value_type>> spectra) {
+      spectral_generator_->initialize_spectra(std::move(spectra));
     }
 
   private:
@@ -272,11 +283,11 @@ namespace rv = ranges::views;
     const std::shared_ptr<const CubeFiniteElementsMesh<value_type>> fe_mesh_
       = CubeMeshBuilder<value_type>{parameters_.cube_edge_len, parameters_.edge_points}.build();
     const std::shared_ptr<SpectralGeneratorV2<value_type>> spectral_generator_
-      = std::make_shared<SpectralGeneratorV2<value_type>>(parameters_.seed, parameters_.ampl_mean, parameters_.ampl_std,
-                                                          parameters_.wv_mean, parameters_.wv_std, parameters_,
-                                                          parameters_.freq_mean, parameters_.freq_std,
-                                                          parameters_.length_scale, parameters_.time_scale);
+      = std::make_shared<SpectralGeneratorV2<value_type>>(parameters_);
     VelocityField<value_type> velocity_field_;
+
+
+    net::thread_pool pool_{std::thread::hardware_concurrency()};
   };
 }
 

@@ -2,7 +2,7 @@
 
 struct AnalysisKrigingDataFixture {
   const std::size_t n = 21;
-  DataLoader data_loader{"test_resources/"};
+  stg::kriging::DataLoader data_loader{"test_resources/"};
 };
 
 SCENARIO_METHOD(AnalysisKrigingDataFixture, "Do analysis of data obtained by kriging method") {

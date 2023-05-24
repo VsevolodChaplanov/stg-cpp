@@ -99,9 +99,9 @@ endif()
 #############################################################################################
 
 
-set(range-v3_INCLUDE_DIRS "/home/vsevolod/.conan/.data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
-set(range-v3_INCLUDE_DIR "/home/vsevolod/.conan/.data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
-set(range-v3_INCLUDES "/home/vsevolod/.conan/.data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
+set(range-v3_INCLUDE_DIRS "/home/vsevolod/.conan/data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
+set(range-v3_INCLUDE_DIR "/home/vsevolod/.conan/data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
+set(range-v3_INCLUDES "/home/vsevolod/.conan/data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
 set(range-v3_RES_DIRS )
 set(range-v3_DEFINITIONS )
 set(range-v3_LINKER_FLAGS_LIST
@@ -172,9 +172,9 @@ set(CMAKE_PREFIX_PATH  ${CMAKE_PREFIX_PATH})
 
 ########### COMPONENT meta VARIABLES #############################################
 
-set(range-v3_meta_INCLUDE_DIRS "/home/vsevolod/.conan/.data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
-set(range-v3_meta_INCLUDE_DIR "/home/vsevolod/.conan/.data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
-set(range-v3_meta_INCLUDES "/home/vsevolod/.conan/.data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
+set(range-v3_meta_INCLUDE_DIRS "/home/vsevolod/.conan/data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
+set(range-v3_meta_INCLUDE_DIR "/home/vsevolod/.conan/data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
+set(range-v3_meta_INCLUDES "/home/vsevolod/.conan/data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
 set(range-v3_meta_LIB_DIRS )
 set(range-v3_meta_RES_DIRS )
 set(range-v3_meta_DEFINITIONS )
@@ -195,9 +195,9 @@ set(range-v3_meta_LINKER_FLAGS_LIST
 
 ########### COMPONENT concepts VARIABLES #############################################
 
-set(range-v3_concepts_INCLUDE_DIRS "/home/vsevolod/.conan/.data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
-set(range-v3_concepts_INCLUDE_DIR "/home/vsevolod/.conan/.data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
-set(range-v3_concepts_INCLUDES "/home/vsevolod/.conan/.data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
+set(range-v3_concepts_INCLUDE_DIRS "/home/vsevolod/.conan/data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
+set(range-v3_concepts_INCLUDE_DIR "/home/vsevolod/.conan/data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
+set(range-v3_concepts_INCLUDES "/home/vsevolod/.conan/data/range-v3/0.12.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include")
 set(range-v3_concepts_LIB_DIRS )
 set(range-v3_concepts_RES_DIRS )
 set(range-v3_concepts_DEFINITIONS )

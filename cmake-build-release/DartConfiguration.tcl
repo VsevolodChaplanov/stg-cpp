@@ -4,30 +4,31 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/vsevolod/coding/cpp/stg-cpp
-BuildDirectory: /home/vsevolod/coding/cpp/stg-cpp/cmake-build-release
+SourceDirectory: /home/vsevolod/coding/stg-cpp
+BuildDirectory: /home/vsevolod/coding/stg-cpp/cmake-build-release
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: vsevolod-pc
+Site: vsevolod-MS-7D25
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Linux-c++
+BuildName: Linux-g++-12
 
 # Subprojects
 LabelsForSubprojects: 
 
 # Submission information
 SubmitURL: http://
+SubmitInactivityTimeout: 
 
 # Dashboard start time
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/vsevolod/coding/cpp/stg-cpp"
-MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
+ConfigureCommand: "/snap/clion/237/bin/cmake/linux/x64/bin/cmake" "/home/vsevolod/coding/stg-cpp"
+MakeCommand: /snap/clion/237/bin/cmake/linux/x64/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
 # version control
@@ -62,7 +63,7 @@ UpdateOptions:
 UpdateType: git
 
 # Compiler info
-Compiler: /usr/bin/c++
+Compiler: /bin/g++-12
 CompilerVersion: 12.1.0
 
 # Dynamic analysis (MemCheck)

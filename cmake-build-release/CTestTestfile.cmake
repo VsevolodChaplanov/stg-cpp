@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/vsevolod/coding/cpp/stg-cpp
-# Build directory: /home/vsevolod/coding/cpp/stg-cpp/cmake-build-release
+# Source directory: /home/vsevolod/coding/stg-cpp
+# Build directory: /home/vsevolod/coding/stg-cpp/cmake-build-release
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

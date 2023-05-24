@@ -1,4 +1,4 @@
-# Install script for directory: /home/vsevolod/coding/cpp/stg-cpp/velocity_field
+# Install script for directory: /home/vsevolod/coding/stg-cpp/velocity_field
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,6 +39,6 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/bin/objdump")
 endif()
 

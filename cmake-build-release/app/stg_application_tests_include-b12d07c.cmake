@@ -1,5 +1,5 @@
-if(EXISTS "/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/app/stg_application_tests_tests-b12d07c.cmake")
-  include("/home/vsevolod/coding/cpp/stg-cpp/cmake-build-release/app/stg_application_tests_tests-b12d07c.cmake")
+if(EXISTS "/home/vsevolod/coding/stg-cpp/cmake-build-release/app/stg_application_tests_tests-b12d07c.cmake")
+  include("/home/vsevolod/coding/stg-cpp/cmake-build-release/app/stg_application_tests_tests-b12d07c.cmake")
 else()
   add_test(stg_application_tests_NOT_BUILT-b12d07c stg_application_tests_NOT_BUILT-b12d07c)
 endif()

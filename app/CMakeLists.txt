@@ -5,7 +5,7 @@ set(STG_APPLICATION_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR})
 
 file(GLOB_RECURSE SOURCES
   ${STG_APPLICATION_ROOT_DIR}/src/*.cpp
-  ${STG_APPLICATION_ROOT_DIR})
+  ${STG_APPLICATION_ROOT_DIR}/include/stg/*)
 
 add_library(${STG_APPLICATION_LIB} STATIC ${SOURCES})
 
@@ -40,7 +40,7 @@ target_include_directories(${STG_APPLICATION_LIB} PUBLIC
 ###########################
 
 set(SPECTRAL_METHOD spectral_method)
-add_executable(${SPECTRAL_METHOD} spectral_main.cpp include/stg/kriging/kriging_method_analysis.hpp kriging_main.cpp)
+add_executable(${SPECTRAL_METHOD} spectral_main.cpp kriging_main.cpp)
 target_link_libraries(${SPECTRAL_METHOD} PUBLIC
   ${STG_APPLICATION_LIB})
 target_link_directories(${SPECTRAL_METHOD} PUBLIC
@@ -64,15 +64,14 @@ file(GLOB_RECURSE TESTSOURCES
   ${STG_APPLICATION_ROOT_DIR}/tests/*.cpp
   ${STG_APPLICATION_ROOT_DIR}/tests/*.hpp)
 
-add_executable(${APPLICATION_TESTS} ${TESTSOURCES} tests/test_collect_statistics_from_1d_data.cpp)
+add_executable(${APPLICATION_TESTS} ${TESTSOURCES})
 
 target_link_libraries(${APPLICATION_TESTS} PUBLIC
   ${STG_APPLICATION_LIB}
   ${STG_MESH_LIB}
   CONAN_PKG::boost
   CONAN_PKG::range-v3
-  CONAN_PKG::catch2
-  stdc++fs)
+  CONAN_PKG::catch2)
 
 target_link_directories(${APPLICATION_TESTS} PUBLIC
   ${STG_VELOCITY_FIELD_INCLUDE_DIR}

@@ -285,6 +285,10 @@
    "True"
   ],
   [
+   "catch2:no_posix_signals",
+   "False"
+  ],
+  [
    "catch2:shared",
    "False"
   ],

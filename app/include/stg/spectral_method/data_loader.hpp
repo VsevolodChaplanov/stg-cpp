@@ -18,7 +18,8 @@ using namespace stg::field;
 
   class DataLoader final {
   public:
-    explicit DataLoader(fs::path directory_with_files);
+    explicit DataLoader(fs::path directory_with_files)
+      : work_dir_{directory_with_files} { }
 
     template<std::floating_point T>
     std::shared_ptr<CubeFiniteElementsMesh<T>> load_mesh(std::string_view file_with_grid) const {

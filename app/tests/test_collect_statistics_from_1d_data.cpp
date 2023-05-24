@@ -29,7 +29,7 @@ SCENARIO_METHOD(StochasticGaussianMethod1D, "Collect data from stochastic gaussi
     const std::string current_dir = "eigcut"s + eig_cut_str + "/"s;
     const std::string work_dir = path_str + current_dir;
 
-    DataLoader data_loader{work_dir};
+    stg::kriging::DataLoader data_loader{work_dir};
     KrigingAnalysis1D<double> kriging1d{data_loader};
 
     kriging1d.calculate_covariations();

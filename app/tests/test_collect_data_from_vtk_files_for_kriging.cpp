@@ -35,7 +35,7 @@ struct DataLoadingFixture {
 };
 
 SCENARIO_METHOD(DataLoadingFixture, "Load generated values from vtk files") {
-  DataLoader data_loader{"test_resources/"};
+  stg::kriging::DataLoader data_loader{"test_resources/"};
   const auto real_space_mesh = data_loader.load_mesh<double>("r_11.vtk");
   const auto covariation_data = data_loader.load_covariation_data<double>();
   const auto velocity_samples = data_loader.load_velocity_samples<double>();
