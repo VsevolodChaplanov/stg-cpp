@@ -254,12 +254,12 @@ namespace rv = ranges::views;
         const auto vertex = fe_mesh_->relation_table()->vertex(g_index);
         velocity_field_.set_value(spectral_generator_->operator()(vertex, time), g_index);
       };
-//      auto executor = pool_.get_executor();
+     auto executor = pool_.get_executor();
       for (const std::size_t g_index : rv::iota(0ull, fe_mesh_->n_vertices())) {
-        func(g_index);
-//        net::post(executor, std::bind(func, g_index));
+        // func(g_index);
+       net::post(executor, std::bind(func, g_index));
       }
-//      pool_.join();
+     pool_.join();
     }
 
     value_type get_max_period() const {

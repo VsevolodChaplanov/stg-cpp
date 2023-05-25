@@ -2,11 +2,18 @@ set(STG_STATISTICS_LIB stg-statistics)
 
 set(STG_STATISTICS_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR})
 
+include_directories(
+  ${STG_VELOCITY_FIELD_INCLUDE_DIR}
+  ${STG_RNGENERATOR_INCLUDE_DIR}
+  ${STG_TENSOR_MATRIX_INCLUDE_DIR}
+  ${STG_STATISTICS_INCLUDE_DIR}
+)
+
 file(GLOB_RECURSE SOURCES
   ${STG_STATISTICS_ROOT_DIR}/src/*.cpp
   ${STG_STATISTICS_INCLUDE_DIR})
 
-add_library(${STG_STATISTICS_LIB} STATIC ${SOURCES} include/statistics/transform_actions.hpp)
+add_library(${STG_STATISTICS_LIB} STATIC ${SOURCES})
 
 target_link_libraries(${STG_STATISTICS_LIB} PUBLIC
   ${STG_RNGENERATOR_LIB}
@@ -14,25 +21,10 @@ target_link_libraries(${STG_STATISTICS_LIB} PUBLIC
   CONAN_PKG::boost
   CONAN_PKG::fmt
   CONAN_PKG::range-v3)
-target_link_directories(${STG_STATISTICS_LIB} PUBLIC
-  ${STG_RNGENERATOR_INCLUDE_DIR}
-  ${STG_TENSOR_MATRIX_INCLUDE_DIR}
-  CONAN_PKG::boost
-  CONAN_PKG::fmt
-  CONAN_PKG::range-v3)
-target_include_directories(${STG_STATISTICS_LIB} PUBLIC
-  ${STG_VELOCITY_FIELD_INCLUDE_DIR}
-  ${STG_RNGENERATOR_INCLUDE_DIR}
-  ${STG_TENSOR_MATRIX_INCLUDE_DIR}
-  ${STG_STATISTICS_INCLUDE_DIR}
-  CONAN_PKG::boost
-  CONAN_PKG::fmt
-  CONAN_PKG::range-v3)
 
-#####################
-###### TESTING ######
-#####################
-
+# ####################
+# ##### TESTING ######
+# ####################
 set(STATISTICS_TESTS stg_statistics_tests)
 
 file(GLOB_RECURSE TESTSOURCES
@@ -56,12 +48,6 @@ target_link_directories(${STATISTICS_TESTS} PUBLIC
   CONAN_PKG::range-v3
   CONAN_PKG::boost)
 
-target_include_directories(${STATISTICS_TESTS} PUBLIC
-  ${STG_RNGENERATOR_INCLUDE_DIR}
-  ${STG_TENSOR_MATRIX_INCLUDE_DIR}
-  ${STG_STATISTICS_INCLUDE_DIR}
-  CONAN_PKG::catch2
-  CONAN_PKG::range-v3
-  CONAN_PKG::boost)
+target_include_directories(${STATISTICS_TESTS} PUBLIC ${STG_STATISTICS_INCLUDE_DIR})
 
 catch_discover_tests(${STATISTICS_TESTS})

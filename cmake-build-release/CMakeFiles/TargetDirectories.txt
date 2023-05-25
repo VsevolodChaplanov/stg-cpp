@@ -75,3 +75,8 @@
 /home/vsevolod/coding/stg-cpp/cmake-build-release/sandbox/CMakeFiles/test.dir
 /home/vsevolod/coding/stg-cpp/cmake-build-release/sandbox/CMakeFiles/edit_cache.dir
 /home/vsevolod/coding/stg-cpp/cmake-build-release/sandbox/CMakeFiles/rebuild_cache.dir
+/home/vsevolod/coding/stg-cpp/cmake-build-release/utility/CMakeFiles/stg-utility.dir
+/home/vsevolod/coding/stg-cpp/cmake-build-release/utility/CMakeFiles/stg-utility-tests.dir
+/home/vsevolod/coding/stg-cpp/cmake-build-release/utility/CMakeFiles/test.dir
+/home/vsevolod/coding/stg-cpp/cmake-build-release/utility/CMakeFiles/edit_cache.dir
+/home/vsevolod/coding/stg-cpp/cmake-build-release/utility/CMakeFiles/rebuild_cache.dir
