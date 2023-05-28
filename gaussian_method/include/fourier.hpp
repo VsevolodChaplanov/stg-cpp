@@ -3,4 +3,4 @@
 
 #include "fourier/fourier.hpp"
 
-#endif //STG_FOURIER_COMMMON_HPP
+#endif//STG_FOURIER_COMMMON_HPP

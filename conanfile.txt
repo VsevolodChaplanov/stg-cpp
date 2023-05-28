@@ -4,6 +4,8 @@ catch2/3.1.0
 fmt/9.1.0
 range-v3/0.12.0
 fftw/3.3.10
+eigen/3.4.0
+armadillo/11.4.3
 
 [options]
 fftw:shared=False
@@ -12,6 +14,10 @@ fftw:threads=True
 fftw:combinedthreads=True
 fftw:simd=sse2
 fftw:precision=double
+armadillo:use_blas=system_blas
+armadillo:use_lapack=system_lapack
+armadillo:use_hdf5=False
+
 
 [generators]
 cmake_multi

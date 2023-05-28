@@ -58,7 +58,7 @@ add_subdirectory(sandbox)
 add_subdirectory(utility)
 
 # Просмотреть все пакеты конан
-# get_property(importTargets DIRECTORY "${CMAKE_SOURCE_DIR}" PROPERTY IMPORTED_TARGETS)
-# message(STATUS "${importTargets}")
+get_property(importTargets DIRECTORY "${CMAKE_SOURCE_DIR}" PROPERTY IMPORTED_TARGETS)
+message(STATUS "${importTargets}")
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin/tests_mesh)
 file(INSTALL ./test_resources DESTINATION ${CMAKE_BINARY_DIR}/bin)

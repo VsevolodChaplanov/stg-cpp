@@ -5,6 +5,7 @@
 #include <array>
 #include <boost/geometry/geometries/point.hpp>
 #include <boost/geometry/geometry.hpp>
+#include <concepts>
 
 namespace stg::tensor {
 namespace bg = boost::geometry;
@@ -70,7 +71,9 @@ namespace bg = boost::geometry;
                                a_31, a_32, a_33}};
     }
 
-    constexpr size_t size() const { return size_; }
+    value_type determinant() const;
+
+    [[nodiscard]] constexpr size_t size() const { return size_; }
 
     iterator begin() const { return values_.begin(); }
 
@@ -84,6 +87,17 @@ namespace bg = boost::geometry;
     std::array<value_type, 9> values_;
     static constexpr inline size_t size_ = 9;
   };
+
+
+  template<std::floating_point T>
+  Tensor<T>::value_type Tensor<T>::determinant() const {
+    return values_[0] * values_[4] * values_[8] 
+      + values_[1] * values_[5] * values_[6] 
+      + values_[2] * values_[3] * values_[7]
+      - values_[2] * values_[4] * values_[6]
+      - values_[0] * values_[5] * values_[7]
+      - values_[1] * values_[3] * values_[8];
+  }
 }
 
 #endif //STG_TENSOR_HPP

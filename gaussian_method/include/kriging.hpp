@@ -3,4 +3,4 @@
 
 #include "kriging/kriging.hpp"
 
-#endif //STG_KRIGING_HPP
+#endif//STG_KRIGING_HPP

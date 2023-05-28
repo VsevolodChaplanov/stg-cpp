@@ -1,9 +1,9 @@
 #ifndef STG_GENERATOR_ENGINES_HPP
 #define STG_GENERATOR_ENGINES_HPP
 
+#include "generator_concept.hpp"
 #include <concepts>
 #include <random>
-#include "generator_concept.hpp"
 
 namespace stg::generator_engines {
     /*
@@ -12,21 +12,21 @@ namespace stg::generator_engines {
      */
     template<concepts::GeneratorConcept Engine, std::invocable Device>
     static Engine& get_engine(Device device) {
-        thread_local static Engine engine{ device() };
+        thread_local static Engine engine{device()};
         return engine;
     }
 
-  template<typename Engine>
-  static Engine& get_engine(size_t seed) {
-    thread_local static Engine engine{ seed };
-    return engine;
-  }
+    template<typename Engine>
+    static Engine& get_engine(size_t seed) {
+        thread_local static Engine engine{seed};
+        return engine;
+    }
 
-  inline static std::random_device& get_random_device() {
-    thread_local static std::random_device rd;
-    return rd;
-  }
-} // namespace generator_engines
+    inline static std::random_device& get_random_device() {
+        thread_local static std::random_device rd;
+        return rd;
+    }
+}// namespace stg::generator_engines
 
 
 #endif

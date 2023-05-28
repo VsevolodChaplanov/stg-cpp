@@ -91,7 +91,7 @@ namespace stg::mesh {
             return vertices;
         }
 
-        std::vector<std::vector<size_t>> assemble_bounds_indices() const {
+        [[nodiscard]] std::vector<std::vector<size_t>> assemble_bounds_indices() const {
             std::vector<std::vector<size_t>> bounds;
             bounds.reserve(size_);
             for (const size_t iz: rv::iota(0ul, nz_ - 1)) {
@@ -115,7 +115,7 @@ namespace stg::mesh {
             return bounds;
         }
 
-        std::vector<size_t> assemble_element_types() const {
+        [[nodiscard]] std::vector<size_t> assemble_element_types() const {
             std::vector<size_t> elements(size_);
             std::fill(std::execution::par_unseq, elements.begin(), elements.end(), 12);
             return elements;
@@ -126,7 +126,7 @@ namespace stg::mesh {
             const size_t nelem = rtable->n_elements();
             std::vector<std::shared_ptr<IFiniteElement<value_type>>> fe_elements(nelem);
 
-            ranges::for_each(ranges::view::iota(0ul, nelem), [&fe_elements, &rtable, this](size_t index) {
+            ranges::for_each(ranges::views::iota(0ul, nelem), [&fe_elements, &rtable, this](size_t index) {
                 const auto& element_indices = rtable->element_vertices_indices(index);
                 const auto vertices_2d = rtable->element_vertices(index);
                 fe_elements[index] = fe_factory_(vertices_2d, element_indices, FiniteElementsFactory::VtkTypes::Voxel);
@@ -190,7 +190,7 @@ namespace stg::mesh {
             return vertices;
         }
 
-        std::vector<std::vector<size_t>> assemble_bounds_indices() const {
+        [[nodiscard]] std::vector<std::vector<size_t>> assemble_bounds_indices() const {
             std::vector<std::vector<size_t>> bounds;
             bounds.reserve(vertices_size_);
             for (const size_t iz: rv::iota(0ul, n_ - 1)) {
@@ -208,7 +208,7 @@ namespace stg::mesh {
             return bounds;
         }
 
-        std::vector<size_t> assemble_element_types() const { return std::vector<size_t>(vertices_size_, 11); }
+        [[nodiscard]] std::vector<size_t> assemble_element_types() const { return std::vector<size_t>(vertices_size_, 11); }
 
         std::vector<std::shared_ptr<IFiniteElement<value_type>>> assemble_voxel_elements(const std::shared_ptr<IRelationTable<value_type>>& rtable) const {
             const size_t nelem = rtable->n_elements();

@@ -74,7 +74,7 @@ namespace engines = stg::generator_engines;
 
       Vector<value_type> result_fluctuation{0., 0., 0.};
 
-      for (const size_t n: ranges::view::iota(0ul, config_.fourier_nodes_number_)) {
+      for (const size_t n: ranges::views::iota(0ul, config_.fourier_nodes_number_)) {
         const size_t phase = dot_product(wave_vectors_[n], scaled_vertex)
           + frequencies_[n] * scaled_time;
         const auto& wave_vector = wave_vectors_[n];

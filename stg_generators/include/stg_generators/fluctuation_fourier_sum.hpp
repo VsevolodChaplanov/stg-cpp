@@ -13,11 +13,13 @@
 #include <utility>
 
 
-namespace stg::generator {
+namespace stg::generators {
 
     /*  Generic formulae 
         \vec{u} (\vec{x}, t) = 
-            \sum_{n=1}^{N} 
+            \sum_{n=1}^{
+        Vector<T> operator()(const Point<value_type>& space_point, value_type time_point) override;
+N} 
                 \left( 
                     \vec{p} \cos{(\vec{k_n} \cdot \vec{x} + \omega_n t)} 
                 + 
@@ -53,6 +55,6 @@ namespace stg::generator {
             return result_fluctuation;
         }
     };
-}// namespace stg::generator
+}// namespace stg::generators
 
 #endif
