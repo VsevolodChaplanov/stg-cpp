@@ -7,7 +7,7 @@
 #include <boost/asio/post.hpp>
 #include <boost/asio/thread_pool.hpp>
 #include <concepts>
-#include <cstddef>
+#include <ranges>
 #include <thread>
 #include <type_traits>
 #include <vector>
@@ -16,7 +16,13 @@ namespace stg::utility {
     namespace net = boost::asio;
     class ThreadPool final {
     public:
-        explicit ThreadPool(std::size_t threads = std::max(1u, std::thread::hardware_concurrency()));
+        explicit ThreadPool(std::size_t threads = std::max(1u, std::thread::hardware_concurrency()))
+            : thread_amount_{threads} {
+            std::ranges::for_each(std::views::iota(0ull, threads),
+                                  [this](std::size_t) {
+                                      workers_.emplace_back([this] { io_.run(); });
+                                  });
+        }
 
         ThreadPool(const ThreadPool&) = delete;
         ThreadPool& operator=(const ThreadPool&) = delete;
@@ -24,7 +30,9 @@ namespace stg::utility {
         ThreadPool(ThreadPool&&) = delete;
         ThreadPool& operator=(ThreadPool&&) = delete;
 
-        net::io_context& get_context();
+        net::io_context& get_context() {
+            return io_;
+        }
 
         template<typename Task>
         void post(Task&& task) {

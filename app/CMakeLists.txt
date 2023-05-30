@@ -83,6 +83,7 @@ target_link_directories(${APPLICATION_TESTS} PUBLIC
 target_include_directories(${APPLICATION_TESTS} PUBLIC
   ${STG_VELOCITY_FIELD_INCLUDE_DIR}
   ${STG_MESH_INCLUDE_DIR}
+  ${STG_UTILITY_INCLUDE_DIR}
   CONAN_PKG::catch2
   CONAN_PKG::range-v3
   CONAN_PKG::boost)

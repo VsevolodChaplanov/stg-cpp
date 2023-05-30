@@ -10,16 +10,21 @@ add_library(${STG_RN_GENERATOR_LIB} STATIC ${SOURCES})
 
 target_link_libraries(${STG_RN_GENERATOR_LIB} PUBLIC
   CONAN_PKG::boost
-  CONAN_PKG::armadillo)
+  CONAN_PKG::armadillo
+  CONAN_PKG::range-v3)
 target_link_directories(${STG_RN_GENERATOR_LIB} PUBLIC
   CONAN_PKG::boost
-  CONAN_PKG::armadillo)
+  CONAN_PKG::armadillo
+  CONAN_PKG::range-v3)
 
 target_include_directories(${STG_RN_GENERATOR_LIB} PUBLIC
   ${STG_MESH_INCLUDE_DIR}
   ${STG_TENSOR_MATRIX_INCLUDE_DIR}
   ${STG_RNGENERATOR_ROOT_DIR}/include/
-  ${STG_RNGENERATOR_ROOT_DIR}/include/stg_random/)
+  ${STG_RNGENERATOR_ROOT_DIR}/include/stg_random
+  CONAN_PKG::boost
+  CONAN_PKG::armadillo
+  CONAN_PKG::range-v3)
 
 # ####################
 # ##### TESTING ######
@@ -44,5 +49,13 @@ target_link_directories(${RNGENERATOR_TEST} PUBLIC
   CONAN_PKG::catch2
   CONAN_PKG::armadillo
   CONAN_PKG::boost)
+
+target_include_directories(${RNGENERATOR_TEST} PUBLIC
+  ${STG_MESH_INCLUDE_DIR}
+  ${STG_TENSOR_MATRIX_INCLUDE_DIR}
+  ${STG_RNGENERATOR_ROOT_DIR}/include/
+  ${STG_RNGENERATOR_ROOT_DIR}/include/stg_random
+  CONAN_PKG::boost
+  CONAN_PKG::armadillo)
 
 catch_discover_tests(${RNGENERATOR_TEST})

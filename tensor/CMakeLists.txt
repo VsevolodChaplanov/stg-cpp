@@ -9,18 +9,20 @@ file(GLOB_RECURSE SOURCES
 add_library(${STG_TENSOR_MATRIX_LIB} STATIC ${SOURCES})
 
 target_link_libraries(${STG_TENSOR_MATRIX_LIB} PUBLIC
-  CONAN_PKG::boost)
+  CONAN_PKG::boost
+  CONAN_PKG::range-v3)
 target_link_directories(${STG_TENSOR_MATRIX_LIB} PUBLIC
-  CONAN_PKG::boost)
+  CONAN_PKG::boost
+  CONAN_PKG::range-v3)
 target_include_directories(${STG_TENSOR_MATRIX_LIB} PUBLIC
   ${STG_TENSOR_MATRIX_INCLUDE_DIR}/stg_tensor/
   ${STG_TENSOR_MATRIX_INCLUDE_DIR}/
-  CONAN_PKG::boost)
+  CONAN_PKG::boost
+  CONAN_PKG::range-v3)
 
-#####################
-###### TESTING ######
-#####################
-
+# ####################
+# ##### TESTING ######
+# ####################
 set(TENSOR_TESTS stg_tensor_tests)
 
 file(GLOB TESTSOURCES

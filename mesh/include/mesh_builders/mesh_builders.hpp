@@ -73,11 +73,11 @@ namespace stg::mesh {
 
             double z = z_l_;
 
-            for (const size_t iz: rv::iota(0ul, nz_)) {
+            for ([[maybe_unused]] const size_t iz: rv::iota(0ul, nz_)) {
                 double y = y_l_;
-                for (const size_t iy: rv::iota(0ul, ny_)) {
+                for ([[maybe_unused]] const size_t iy: rv::iota(0ul, ny_)) {
                     double x = x_l_;
-                    for (const size_t ix: rv::iota(0ul, nx_)) {
+                    for ([[maybe_unused]] const size_t ix: rv::iota(0ul, nx_)) {
                         vertices.push_back(x);
                         vertices.push_back(y);
                         vertices.push_back(z);
@@ -208,7 +208,7 @@ namespace stg::mesh {
             return bounds;
         }
 
-        [[nodiscard]] std::vector<size_t> assemble_element_types() const { return std::vector<size_t>(vertices_size_, 11); }
+        [[nodiscard]] std::vector<size_t> assemble_element_types() const { return {vertices_size_, 11}; }
 
         std::vector<std::shared_ptr<IFiniteElement<value_type>>> assemble_voxel_elements(const std::shared_ptr<IRelationTable<value_type>>& rtable) const {
             const size_t nelem = rtable->n_elements();

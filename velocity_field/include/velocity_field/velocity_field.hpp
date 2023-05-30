@@ -6,6 +6,9 @@
 #include <geometry/geometry.hpp>
 #include <mutex>
 #include <range/v3/all.hpp>
+#include <range/v3/range/conversion.hpp>
+#include <range/v3/view/transform.hpp>
+#include <vector>
 
 namespace stg::field {
     namespace rv = ranges::views;
@@ -25,6 +28,20 @@ namespace stg::field {
                       std::vector<value_type> vz) noexcept
             : vx_{std::move(vx)}, vy_{std::move(vy)}, vz_{std::move(vz)} {}
 
+        explicit VelocityField(const std::vector<Vector<value_type>>& velocities)
+            : vx_{velocities | ranges::views::transform([](const Vector<value_type>& vel) {
+                      return vel.template get<0>();
+                  }) |
+                  ranges::to<std::vector<value_type>>()},
+              vy_{velocities | ranges::views::transform([](const Vector<value_type>& vel) {
+                      return vel.template get<1>();
+                  }) |
+                  ranges::to<std::vector<value_type>>()},
+              vz_{velocities | ranges::views::transform([](const Vector<value_type>& vel) {
+                      return vel.template get<2>();
+                  }) |
+                  ranges::to<std::vector<value_type>>()} {}
+
         VelocityField(const VelocityField& other) noexcept
             : vx_{other.vx_}, vy_{other.vy_}, vz_{other.vz_} {}
 
@@ -40,7 +57,7 @@ namespace stg::field {
             return *this;
         }
 
-        size_t size() const override { return vx_.size(); }
+        [[nodiscard]] size_t size() const override { return vx_.size(); }
 
         ~VelocityField() override = default;
 

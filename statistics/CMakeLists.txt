@@ -7,6 +7,8 @@ include_directories(
   ${STG_RNGENERATOR_INCLUDE_DIR}
   ${STG_TENSOR_MATRIX_INCLUDE_DIR}
   ${STG_STATISTICS_INCLUDE_DIR}
+  ${STG_MESH_INCLUDE_DIR}
+  CONAN_PKG::armadillo
 )
 
 file(GLOB_RECURSE SOURCES
@@ -20,7 +22,8 @@ target_link_libraries(${STG_STATISTICS_LIB} PUBLIC
   ${STG_TENSOR_MATRIX_LIB}
   CONAN_PKG::boost
   CONAN_PKG::fmt
-  CONAN_PKG::range-v3)
+  CONAN_PKG::range-v3
+  CONAN_PKG::armadillo)
 
 # ####################
 # ##### TESTING ######
