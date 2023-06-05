@@ -183,6 +183,25 @@ namespace stg::mesh {
                     std::move(fe_elements));
         }
 
+        [[nodiscard("Heavy object construction")]] std::shared_ptr<CubeRelationTable<value_type>> build_relation_table(std::vector<T> vertices) const {
+            auto bound_ind_future = std::async(std::launch::async, &CubeMeshBuilder::assemble_bounds_indices, this);
+            auto element_types_future = std::async(std::launch::async, &CubeMeshBuilder::assemble_element_types, this);
+            auto&& bound_indices = bound_ind_future.get();
+            auto&& element_types = element_types_future.get();
+
+            return std::make_shared<CubeRelationTable<value_type>>(
+                    l_, n_, std::move(vertices), std::move(bound_indices), std::move(element_types));
+        }
+
+        [[nodiscard("Heavy object construction")]] std::shared_ptr<CubeFiniteElementsMesh<value_type>> build(std::vector<T> vertices) const {
+            std::shared_ptr<CubeRelationTable<value_type>> rtable = build_relation_table(std::move(vertices));
+            auto&& fe_elements = assemble_voxel_elements(rtable);
+
+            return std::make_shared<CubeFiniteElementsMesh<value_type>>(
+                    std::move(rtable),
+                    std::move(fe_elements));
+        }
+
     protected:
         std::vector<value_type> assemble_vertices() const {
             std::vector<value_type> vertices(n_);

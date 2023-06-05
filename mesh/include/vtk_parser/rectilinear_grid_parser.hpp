@@ -31,76 +31,92 @@ namespace stg::mesh {
         RectilinearGridParser(const RectilinearGridParser&) = delete;
         RectilinearGridParser& operator=(const RectilinearGridParser&) = delete;
 
-        template<std::floating_point T>
-        std::shared_ptr<CubeRelationTable<T>> mesh() {
-            boost::char_separator<char> sep{" "};
-            std::string line;
-            bool coordinates_begin = false;
-            bool has_n_points = false;
-            bool has_length = false;
-            std::size_t n;
-            double l;
+        // template<std::floating_point T>
+        // std::shared_ptr<CubeRelationTable<T>> mesh() {
+        //     boost::char_separator<char> sep{" "};
+        //     std::string line;
+        //     bool coordinates_begin = false;
+        //     bool has_n_points = false;
+        //     bool has_length = false;
+        //     std::size_t n;
+        //     double l;
+        //     std::vector<T> vertices;
 
-            while (std::getline(file_, line)) {
-                boost::tokenizer tok(line, sep);
-                if (*tok.begin() == "DIMENSIONS") {
-                    n = std::stoul(*(++tok.begin()));
-                    cached_vert_number_ = n * n * n;
-                    has_n_points = true;
-                }
+        //     while (std::getline(file_, line)) {
+        //         boost::tokenizer tok(line, sep);
+        //         if (*tok.begin() == "DIMENSIONS") {
+        //             n = std::stoul(*(++tok.begin()));
+        //             cached_vert_number_ = n * n * n;
+        //             has_n_points = true;
+        //         }
 
-                if (coordinates_begin) {
-                    const auto coordinate_left = *tok.begin();
-                    l = 2 * std::fabs(std::stod(coordinate_left));
-                    has_length = true;
-                }
+        //         if (*tok.begin() == "Y_COORDINATES") {
+        //             coordinates_begin = false;
+        //             has_length = true;
+        //         }
 
-                if (*tok.begin() == "X_COORDINATES") {
-                    coordinates_begin = true;
-                }
+        //         if (coordinates_begin) {
+        //             const auto coordinate_left = *tok.begin();
+        //             const auto coord = std::stod(coordinate_left);
+        //             vertices.push_back(coord);
+        //         }
 
-                if (has_n_points && has_length) { break; }
-            }
+        //         if (*tok.begin() == "X_COORDINATES") {
+        //             coordinates_begin = true;
+        //         }
 
-            CubeMeshBuilder<T> builder{l, n};
-            return builder.build_relation_table();
-        }
+        //         if (has_n_points && has_length) { break; }
+        //     }
 
-        template<std::floating_point T>
-        std::shared_ptr<CubeFiniteElementsMesh<T>> fe_mesh() {
-            boost::char_separator<char> sep{" "};
-            std::string line;
-            bool coordinates_begin = false;
-            bool has_n_points = false;
-            bool has_length = false;
-            std::size_t n;
-            double l;
+        //     l = 2 * vertices.back();
 
-            while (std::getline(file_, line)) {
-                boost::tokenizer tok(line, sep);
-                if (*tok.begin() == "DIMENSIONS") {
-                    n = std::stoul(*(++tok.begin()));
-                    cached_vert_number_ = n * n * n;
-                    has_n_points = true;
-                    has_cached_vert_number_ = true;
-                }
+        //     CubeMeshBuilder<T> builder{l, n};
+        //     return builder.build_relation_table(std::move(vertices));
+        // }
 
-                if (coordinates_begin) {
-                    const auto coordinate_left = *tok.begin();
-                    l = 2 * std::fabs(std::stod(coordinate_left));
-                    has_length = true;
-                }
+        // template<std::floating_point T>
+        // std::shared_ptr<CubeFiniteElementsMesh<T>> fe_mesh() {
+        //     boost::char_separator<char> sep{" "};
+        //     std::string line;
+        //     bool coordinates_begin = false;
+        //     bool has_n_points = false;
+        //     bool has_length = false;
+        //     std::size_t n;
+        //     double l;
+        //     std::vector<T> vertices;
 
-                if (*tok.begin() == "X_COORDINATES") {
-                    coordinates_begin = true;
-                }
+        //     while (std::getline(file_, line)) {
+        //         boost::tokenizer tok(line, sep);
+        //         if (*tok.begin() == "DIMENSIONS") {
+        //             n = std::stoul(*(++tok.begin()));
+        //             cached_vert_number_ = n * n * n;
+        //             has_n_points = true;
+        //             has_cached_vert_number_ = true;
+        //         }
 
-                if (has_n_points && has_length) { break; }
-            }
+        //         if (*tok.begin() == "Y_COORDINATES") {
+        //             coordinates_begin = false;
+        //             has_length = true;
+        //         }
 
-            CubeMeshBuilder<T> builder{l, n};
-            return builder.build();
-        }
+        //         if (coordinates_begin) {
+        //             const auto coordinate_left = *tok.begin();
+        //             const auto coord = std::stod(coordinate_left);
+        //             vertices.push_back(coord);
+        //         }
+
+        //         if (*tok.begin() == "X_COORDINATES") {
+        //             coordinates_begin = true;
+        //         }
+
+        //         if (has_n_points && has_length) { break; }
+        //     }
+
+        //     l = 2 * vertices.back();
+
+        //     CubeMeshBuilder<T> builder{l, n};
+        //     return builder.build(std::move(vertices));
+        // }
 
         template<std::floating_point T>
         std::vector<T> scalar_data(std::string_view starting_expr = "LOOKUP_TABLE default",
@@ -167,6 +183,81 @@ namespace stg::mesh {
                 }
             }
             return result;
+        }
+
+        template<std::floating_point T>
+        std::shared_ptr<CubeRelationTable<T>> mesh() {
+            boost::char_separator<char> sep{" "};
+            std::string line;
+            bool coordinates_begin = false;
+            bool has_n_points = false;
+            bool has_length = false;
+            std::size_t n;
+            double l;
+
+            while (std::getline(file_, line)) {
+                boost::tokenizer tok(line, sep);
+                if (*tok.begin() == "DIMENSIONS") {
+                    n = std::stoul(*(++tok.begin()));
+                    cached_vert_number_ = n * n * n;
+                    has_n_points = true;
+                }
+
+                if (coordinates_begin) {
+                    const auto coordinate_left = *tok.begin();
+                    l = 2 * std::fabs(std::stod(coordinate_left));
+                    const auto dl = l / n;
+                    l += dl;
+                    has_length = true;
+                }
+
+                if (*tok.begin() == "X_COORDINATES") {
+                    coordinates_begin = true;
+                }
+
+                if (has_n_points && has_length) { break; }
+            }
+
+            CubeMeshBuilder<T> builder{l, n};
+            return builder.build_relation_table();
+        }
+
+        template<std::floating_point T>
+        std::shared_ptr<CubeFiniteElementsMesh<T>> fe_mesh() {
+            boost::char_separator<char> sep{" "};
+            std::string line;
+            bool coordinates_begin = false;
+            bool has_n_points = false;
+            bool has_length = false;
+            std::size_t n;
+            double l;
+
+            while (std::getline(file_, line)) {
+                boost::tokenizer tok(line, sep);
+                if (*tok.begin() == "DIMENSIONS") {
+                    n = std::stoul(*(++tok.begin()));
+                    cached_vert_number_ = n * n * n;
+                    has_n_points = true;
+                    has_cached_vert_number_ = true;
+                }
+
+                if (coordinates_begin) {
+                    const auto coordinate_left = *tok.begin();
+                    l = 2 * std::fabs(std::stod(coordinate_left));
+                    const auto dl = l / n;
+                    l += dl;
+                    has_length = true;
+                }
+
+                if (*tok.begin() == "X_COORDINATES") {
+                    coordinates_begin = true;
+                }
+
+                if (has_n_points && has_length) { break; }
+            }
+
+            CubeMeshBuilder<T> builder{l, n};
+            return builder.build();
         }
 
     private:
