@@ -205,7 +205,7 @@ namespace stg::mesh {
     protected:
         std::vector<value_type> assemble_vertices() const {
             std::vector<value_type> vertices(n_);
-            value_type left = -l_ / 2 - h_ / 2;
+            value_type left = -l_ / 2 - h_;
             std::generate(vertices.begin(), vertices.end(),
                           [&] { return left += h_; });
             return vertices;
@@ -252,8 +252,8 @@ namespace stg::mesh {
 
         const value_type l_;
         const std::size_t n_;
-        const value_type h_ = (l_) / (n_);
-        const std::size_t vertices_size_ = n_ * n_ * n_;// (n_ - 1) * (n_ - 1) * (n_ - 1);
+        const value_type h_ = (l_) / (n_ - 1);
+        const std::size_t vertices_size_ = (n_ - 1) * (n_ - 1) * (n_ - 1);
         static const inline size_t vtk_cell_type_ = 12;
         const FiniteElementsFactory fe_factory_;
     };

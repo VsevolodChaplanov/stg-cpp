@@ -1,13 +1,11 @@
 #ifndef STG_APP_SPECTRAL_METHOD_INTEGRATOR_HPP
 #define STG_APP_SPECTRAL_METHOD_INTEGRATOR_HPP
 
-#include "fourier/ft.hpp"
 #include "geometry/geometry.hpp"
 #include "mesh_builders/cube_fe_mesh.hpp"
 #include "stg/spectral_method/data_loader.hpp"
 #include <catch2/internal/catch_clara.hpp>
 #include <concepts>
-#include <fourier.hpp>
 #include <memory>
 #include <ranges>
 #include <spherical_mesh/sphere_mesh.hpp>
@@ -77,14 +75,6 @@ namespace stg::spectral {
             const auto fert_0 = fert_mesh_->integrate(fert_values_file);
             const auto center_lin_index = cov_mesh_->center_lin_index();
             const auto r_0 = cov_values_[center_lin_index];
-            return {fert_0, r_0};
-        }
-
-        std::pair<T, T> apply_fourier_to_covariations() {
-            const auto center_lin_index = cov_mesh_->center_lin_index();
-            fert_values_ = kriging::fourier3(*cov_mesh_->relation_table(), cov_values_);
-            const auto r_0 = cov_values_[center_lin_index];
-            const auto fert_0 = fert_values_[center_lin_index];
             return {fert_0, r_0};
         }
 
