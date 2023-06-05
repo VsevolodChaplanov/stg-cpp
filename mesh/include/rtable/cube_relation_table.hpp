@@ -247,7 +247,7 @@ namespace stg::mesh {
         constexpr value_type l() const noexcept { return l_; }
 
         // Return discretization number along edge
-        constexpr value_type n() const noexcept { return n_; }
+        constexpr std::size_t n() const noexcept { return n_; }
 
         template<typename BuilderType>
         std::shared_ptr<CubeRelationTable<value_type>> make_fourier_space() const {
@@ -269,7 +269,7 @@ namespace stg::mesh {
             return {center_n, center_n, center_n};
         }
 
-        std::size_t center_lin_index() const {
+        [[nodiscard]] std::size_t center_lin_index() const {
             const std::array<std::size_t, 3> tri_ind = center_tri_index();
             return lin_index(tri_ind[0], tri_ind[1], tri_ind[2]);
         }
@@ -281,7 +281,7 @@ namespace stg::mesh {
     private:
         const value_type l_;                                       // length of cube's edges
         const std::size_t n_;                                      // number of points on edges
-        const value_type h_ = l_ / (n_ - 1);                       // step between point on edges
+        const value_type h_ = l_ / (n_);                           // step between point on edges
         const std::vector<value_type> vertices_;                   // only one edge points {x0, x1, x2, ... }
         const std::vector<std::vector<std::size_t>> bound_indices_;// bound indices {{0, 1, 10, 11}, ... }
         const std::vector<std::size_t> element_types_;             // element types {12, 12, ... }
