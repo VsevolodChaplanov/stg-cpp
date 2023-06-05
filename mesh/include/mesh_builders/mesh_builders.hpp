@@ -2,6 +2,8 @@
 #define STG_MESH_BUILDERS_HPP
 
 #include "cube_fe_mesh.hpp"
+#include "mesh_builder_fwd.hpp"
+
 #include "fem/fe_factory.hpp"
 #include "rtable/cube_relation_table.hpp"
 #include "rtable/i_relation_table.hpp"
@@ -220,11 +222,11 @@ namespace stg::mesh {
                 fe_elements[index] = fe_factory_(vertices_2d, element_indices, FiniteElementsFactory::VtkTypes::Voxel);
             });
 
-            /*      ranges::views::iota(0ul, nelem) | ranges::for_each([&fe_elements, &rtable, this](size_t index) {
-        const auto& element_indices = rtable->element_vertices_indices(index);
-        const auto vertices_2d = rtable->element_vertices(index);
-        fe_elements[index] = fe_factory_(vertices_2d, element_indices, FiniteElementsFactory::VtkTypes::Voxel);
-      });*/
+            /*  ranges::views::iota(0ul, nelem) | ranges::for_each([&fe_elements, &rtable, this](size_t index) {
+                const auto& element_indices = rtable->element_vertices_indices(index);
+                const auto vertices_2d = rtable->element_vertices(index);
+                fe_elements[index] = fe_factory_(vertices_2d, element_indices, FiniteElementsFactory::VtkTypes::Voxel);
+            });*/
 
             return fe_elements;
         }

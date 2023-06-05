@@ -88,6 +88,14 @@ target_include_directories(${APPLICATION_TESTS} PUBLIC
   CONAN_PKG::range-v3
   CONAN_PKG::boost)
 
+target_compile_definitions(${APPLICATION_TESTS} PRIVATE CATCH_CONFIG_NO_POSIX_SIGNALS)
+add_test(application_test ${APPLICATION_TESTS})
+set_tests_properties(application_test PROPERTIES
+  TIMEOUT 3600
+  TIMEOUT_SIGNAL_NAME SIGTERM
+  TIMEOUT_SIGNAL_GRACE_PERIOD 5
+)
+
 catch_discover_tests(${APPLICATION_TESTS})
 
 add_executable(kriging kriging_main.cpp)

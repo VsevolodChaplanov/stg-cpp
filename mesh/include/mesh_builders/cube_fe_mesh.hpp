@@ -2,11 +2,15 @@
 #define STG_CUBE_FE_MESH_HPP
 
 #include "fem/i_fe_mesh.hpp"
+#include "mesh_builder_fwd.hpp"
 #include "rtable/cube_relation_table.hpp"
+#include <cmath>
+#include <complex>
 #include <concepts>
 #include <fem.hpp>
 #include <geometry/geometry.hpp>
 #include <memory>
+#include <numbers>
 #include <vector>
 
 namespace stg::mesh {
@@ -27,11 +31,11 @@ namespace stg::mesh {
               cube_relation_table_{std::move(mesh)},
               fe_elements_{std::move(elements)} {}
 
-        std::size_t n_vertices() const override {
+        [[nodiscard]] std::size_t n_vertices() const override {
             return nx_ * ny_ * nz_;
         }
 
-        std::size_t n_elements() const override {
+        [[nodiscard]] std::size_t n_elements() const override {
             return size_;
         }
 
@@ -45,13 +49,13 @@ namespace stg::mesh {
 
         std::shared_ptr<IRelationTable<T>> relation_table() const override { return cube_relation_table_; }
 
-        constexpr std::size_t nx() const { return nx_; }
+        [[nodiscard]] constexpr std::size_t nx() const { return nx_; }
 
-        constexpr std::size_t ny() const { return ny_; }
+        [[nodiscard]] constexpr std::size_t ny() const { return ny_; }
 
-        constexpr std::size_t nz() const { return nz_; }
+        [[nodiscard]] constexpr std::size_t nz() const { return nz_; }
 
-        std::array<std::size_t, 3> tri_index(std::size_t ivert) const {
+        [[nodiscard]] std::array<std::size_t, 3> tri_index(std::size_t ivert) const {
             const size_t k = ivert / (nx_ * ny_);
             const size_t ij = ivert % (nx_ * ny_);
             const size_t j = ij / nx_;
@@ -60,7 +64,7 @@ namespace stg::mesh {
             return {i, j, k};
         }
 
-        std::size_t lin_index(std::size_t ix, std::size_t jy, std::size_t kz) const {
+        [[nodiscard]] std::size_t lin_index(std::size_t ix, std::size_t jy, std::size_t kz) const {
             return ix + jy * nx_ + kz * nx_ * ny_;
         }
 
@@ -92,11 +96,11 @@ namespace stg::mesh {
                 std::vector<std::shared_ptr<IFiniteElement<T>>>&& fe_elements)
             : cube_relation_table_{std::forward<std::shared_ptr<CubeRelationTable<value_type>>>(cube_relation_table)}, fe_elements_{std::forward<std::vector<std::shared_ptr<IFiniteElement<value_type>>>>(fe_elements)} {}
 
-        size_t n_vertices() const noexcept override {
+        [[nodiscard]] size_t n_vertices() const noexcept override {
             return cube_relation_table_->n_vertices();
         }
 
-        size_t n_elements() const noexcept override {
+        [[nodiscard]] size_t n_elements() const noexcept override {
             return cube_relation_table_->n_elements();
         }
 
@@ -114,11 +118,11 @@ namespace stg::mesh {
 
         auto elements_view() const noexcept { return ranges::views::all(fe_elements_); }
 
-        std::array<std::size_t, 3> center_tri_index() const {
+        [[nodiscard]] std::array<std::size_t, 3> center_tri_index() const {
             return cube_relation_table_->center_tri_index();
         }
 
-        std::size_t center_lin_index() const {
+        [[nodiscard]] std::size_t center_lin_index() const {
             return cube_relation_table_->center_lin_index();
         }
 
@@ -146,6 +150,91 @@ namespace stg::mesh {
                 std::vector<value_type> element_values(elem->basis_functions_n());
                 for (const auto ind: rv::iota(0ull, elem->basis_functions_n())) {
                     element_values[ind] = values[indices[ind]];
+                }
+                const auto elem_integral = elem->integrate(element_values);
+                result += elem_integral;
+            }
+
+            return result;
+        }
+
+        template<std::ranges::viewable_range Range>
+        value_type integrate_fourier(Range&& values, const Vector<value_type>& wave_vector) const {
+            value_type fourier_coeff = 1 / (2 * std::numbers::pi_v<value_type>);
+            fourier_coeff = fourier_coeff * fourier_coeff * fourier_coeff;
+            value_type result = 0.;
+            for (auto elem: fe_elements_) {
+                const auto indices = elem->global_indices();
+                std::vector<value_type> element_values(elem->basis_functions_n());
+                for (const auto ind: rv::iota(0ull, elem->basis_functions_n())) {
+                    const auto value = values[indices[ind]];
+                    // e ^ (- i k r) = e ^ (phase)
+                    const auto phase = dot_product(wave_vector, cube_relation_table_->vertex(ind));
+                    const auto to_integrate = value * std::cos(phase) - value * std::sin(phase);//
+                    element_values[ind] = to_integrate / fourier_coeff;
+                }
+                const auto elem_integral = elem->integrate(element_values);
+                result += elem_integral;
+            }
+
+            return result;
+        }
+
+        template<std::ranges::viewable_range Range>
+        value_type integrate_inverse_fourier(Range&& values, const Vector<value_type>& wave_vector) const {
+            value_type result = 0.;
+            for (auto elem: fe_elements_) {
+                const auto indices = elem->global_indices();
+                std::vector<value_type> element_values(elem->basis_functions_n());
+                for (const auto ind: rv::iota(0ull, elem->basis_functions_n())) {
+                    const auto value = values[indices[ind]];
+                    // e ^ (- i k r) = e ^ (phase)
+                    const auto phase = dot_product(wave_vector, cube_relation_table_->vertex(ind));
+                    const auto to_integrate = value * (std::cos(phase) + std::sin(phase));//
+                    element_values[ind] = to_integrate;
+                }
+                const auto elem_integral = elem->integrate(element_values);
+                result += elem_integral;
+            }
+
+            return result;
+        }
+
+        template<std::ranges::viewable_range Range>
+        std::complex<value_type> integrate_fourier2(Range&& values, const Vector<value_type>& wave_vector) const {
+            value_type fourier_coeff = 1 / (2 * std::numbers::pi_v<value_type>);
+            fourier_coeff = 1;//fourier_coeff * fourier_coeff * fourier_coeff;
+            std::complex<value_type> result = 0.;
+            for (auto elem: fe_elements_) {
+                const auto indices = elem->global_indices();
+                std::vector<std::complex<value_type>> element_values(elem->basis_functions_n());
+                for (const auto ind: rv::iota(0ull, elem->basis_functions_n())) {
+                    const auto value = values[indices[ind]];
+                    // e ^ (- i k r) = e ^ (phase)
+                    const auto phase = dot_product(wave_vector, cube_relation_table_->vertex(ind));
+                    const auto to_integrate = std::complex<value_type>{value * std::cos(phase), -value * std::sin(phase)};
+                    element_values[ind] = to_integrate / fourier_coeff;
+                }
+                const auto elem_integral = elem->integrate(element_values);
+                result += elem_integral;
+            }
+
+            return result;
+        }
+
+        template<std::ranges::viewable_range Range>
+        std::complex<value_type> integrate_inverse_fourier2(Range&& values, const Vector<value_type>& wave_vector) const {
+            std::complex<value_type> result = 0.;
+            for (auto elem: fe_elements_) {
+                const auto indices = elem->global_indices();
+                std::vector<std::complex<value_type>> element_values(elem->basis_functions_n());
+                for (const auto ind: rv::iota(0ull, elem->basis_functions_n())) {
+                    const auto value = values[indices[ind]];
+                    // e ^ (- i k r) = e ^ (phase)
+                    const auto phase = dot_product(wave_vector, cube_relation_table_->vertex(ind));
+                    const auto value_to_integrate = value * std::complex<value_type>{std::cos(phase), std::sin(phase)};
+                    // const auto to_integrate = std::complex<value_type>{value * std::cos(phase), +value * std::sin(phase)};
+                    element_values[ind] = value_to_integrate;
                 }
                 const auto elem_integral = elem->integrate(element_values);
                 result += elem_integral;

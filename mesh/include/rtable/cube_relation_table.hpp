@@ -4,12 +4,13 @@
 #include "i_relation_table.hpp"
 #include <array>
 #include <range/v3/all.hpp>
+#include <vector>
 
 namespace stg::mesh {
     namespace rv = ranges::views;
 
-    template<std::floating_point T>
-    class CubeMeshBuilder;
+    // template<std::floating_point T>
+    // class CubeMeshBuilder;
 
     template<std::floating_point T>
     class CubePrizmRelationTable final : public IRelationTable<T> {
@@ -248,16 +249,18 @@ namespace stg::mesh {
         // Return discretization number along edge
         constexpr value_type n() const noexcept { return n_; }
 
+        template<typename BuilderType>
         std::shared_ptr<CubeRelationTable<value_type>> make_fourier_space() const {
             const value_type hk = 2 * std::numbers::pi_v<value_type> / l_;
             const value_type lk = hk * n_;
-            const CubeMeshBuilder<value_type> builder{lk, n_};
+            const BuilderType builder{lk, n_};
             return builder.build_relation_table();
         }
 
+        template<typename BuilderType>
         std::shared_ptr<CubeRelationTable<value_type>> make_real_space() const {
             const value_type ls = 2 * std::numbers::pi_v<value_type> / h_;
-            const CubeMeshBuilder<value_type> builder{ls, n_};
+            const BuilderType builder{ls, n_};
             return builder.build_relation_table();
         }
 
@@ -269,6 +272,10 @@ namespace stg::mesh {
         std::size_t center_lin_index() const {
             const std::array<std::size_t, 3> tri_ind = center_tri_index();
             return lin_index(tri_ind[0], tri_ind[1], tri_ind[2]);
+        }
+
+        const std::vector<value_type>& linear_coordinates() const {
+            return vertices_;
         }
 
     private:

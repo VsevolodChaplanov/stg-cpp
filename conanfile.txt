@@ -9,7 +9,6 @@ armadillo/11.4.3
 
 [options]
 fftw:shared=False
-fftw:openmp=True
 fftw:threads=True
 fftw:combinedthreads=True
 fftw:simd=sse2

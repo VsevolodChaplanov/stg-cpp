@@ -104,20 +104,20 @@ namespace stg::generators {
     private:
         std::size_t n_;
         value_type k_0_, w_0_;
-        std::vector<Vector<value_type>> k_;
         std::vector<Vector<value_type>> v_, w_;
+        std::vector<Vector<value_type>> k_;
         std::vector<value_type> omega_;
 
         static std::vector<Vector<value_type>> generate_wave_vectors(value_type k_0, std::size_t n, std::size_t seed);
         static std::vector<value_type> generate_frequencies(value_type w_0, std::size_t n, std::size_t seed);
 
         template<std::ranges::viewable_range WaveVectors>
-        std::vector<Vector<T>> generate_ampltudes(const WaveVectors& wave_vectors, std::size_t n, std::size_t seed,
-                                                  const Vector<value_type>& mean = Vector<value_type>{0, 0, 0},
-                                                  const tensor::Tensor<value_type>& tensor = tensor::Tensor<value_type>{
-                                                          1, 0, 0,
-                                                          0, 1, 0,
-                                                          0, 0, 1});
+        std::vector<Vector<T>> generate_amplitudes(const WaveVectors& wave_vectors, std::size_t n, std::size_t seed,
+                                                   const Vector<value_type>& mean = Vector<value_type>{0, 0, 0},
+                                                   const tensor::Tensor<value_type>& tensor = tensor::Tensor<value_type>{
+                                                           1, 0, 0,
+                                                           0, 1, 0,
+                                                           0, 0, 1});
     };
 
 
@@ -214,7 +214,7 @@ namespace stg::generators {
     KraichanGeneratorGaussian<T>::KraichanGeneratorGaussian(std::size_t n, value_type k_0, value_type w_0, std::vector<Vector<value_type>> k,
                                                             std::size_t seed) noexcept(std::is_nothrow_move_constructible_v<Vector<value_type>>&&
                                                                                                std::is_nothrow_move_constructible_v<std::vector<Vector<value_type>>>)
-        : KraichanGeneratorGaussian{n, k_0, w_0, generate_ampltudes(k, n, seed), generate_ampltudes(k, n, seed), std::move(k), generate_frequencies(w_0, n, seed)} {}
+        : KraichanGeneratorGaussian{n, k_0, w_0, generate_amplitudes(k, n, seed), generate_amplitudes(k, n, seed), std::move(k), generate_frequencies(w_0, n, seed)} {}
 
     template<std::floating_point T>
     KraichanGeneratorGaussian<T>::KraichanGeneratorGaussian(std::size_t n, value_type k_0, value_type w_0,
@@ -226,31 +226,32 @@ namespace stg::generators {
 
     template<std::floating_point T>
     template<std::ranges::viewable_range WaveVectors>
-    std::vector<Vector<T>> KraichanGeneratorGaussian<T>::generate_ampltudes(const WaveVectors& wave_vectors, std::size_t n, std::size_t seed,
-                                                                            const Vector<value_type>& mean,
-                                                                            const tensor::Tensor<value_type>& tensor) {
+    std::vector<Vector<T>> KraichanGeneratorGaussian<T>::generate_amplitudes(const WaveVectors& wave_vectors, std::size_t n, std::size_t seed,
+                                                                             const Vector<value_type>& mean,
+                                                                             const tensor::Tensor<value_type>& tensor) {
 
         random::MultidimenasionalGaussianGenerator<value_type> multidim_generator{mean, tensor};
         auto generate = [&multidim_generator](const Vector<T>& wave_vector) {
-            const auto generated_xi = multidim_generator.template operator()();
+            const auto generated_xi = multidim_generator();
             return cross_product(generated_xi, wave_vector);
         };
-        return ranges::views::transform(generate) | ranges::to<std::vector<Vector<value_type>>>();
+        return wave_vectors | ranges::views::transform(generate) | ranges::to<std::vector<Vector<T>>>();
     }
 
     template<std::floating_point T>
     std::vector<Vector<typename KraichanGeneratorGaussian<T>::value_type>> KraichanGeneratorGaussian<T>::generate_wave_vectors(value_type k_0, std::size_t n, std::size_t seed) {
         RNGenerator generator{generator_engines::get_engine<std::mt19937_64>(seed), std::normal_distribution<>{0, k_0}};
-        auto generate_random_vector = [&generator, k_0]() {
+        auto generate_random_vector = [&generator]() {
             auto x = generator();
             auto y = generator();
             auto z = generator();
-            Vector<value_type> result{x, y, z};
-            return scale_to_length(result, k_0);
+            return Vector<value_type>{x, y, z};
+            // Vector<value_type> result{x, y, z};
+            // return scale_to_length(result, k_0);
         };
 
         return ranges::views::generate(generate_random_vector) |
-               ranges::views::take(n) | ranges::to<std::vector<value_type>>();
+               ranges::views::take(n) | ranges::to<std::vector<Vector<value_type>>>();
     }
 
     template<std::floating_point T>
@@ -263,6 +264,17 @@ namespace stg::generators {
                ranges::views::take(n) |
                ranges::to<std::vector>();
     }
+
+    template<std::floating_point T>
+    Vector<T> KraichanGeneratorGaussian<T>::operator()(const Point<value_type>& space_point, value_type time_point) const {
+        return FluctuationFouirerSum<value_type>::calculate_sum(v_ | std::views::all,
+                                                                w_ | std::views::all,
+                                                                k_ | std::views::all,
+                                                                omega_ | std::views::all,
+                                                                space_point,
+                                                                time_point);
+    }
+
 
 }// namespace stg::generators
 #endif

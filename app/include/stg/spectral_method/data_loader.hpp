@@ -2,12 +2,15 @@
 #define STG_SPECTRAL_DATA_LOADER_HPP
 
 #include "geometry/geometry.hpp"
+#include "stg_tensor/tensor.hpp"
+#include <concepts>
 #include <filesystem>
 #include <fmt/core.h>
 #include <mesh_builders.hpp>
 #include <statistics.hpp>
 #include <string_view>
 #include <utility>
+#include <vector>
 #include <velocity_field/velocity_field.hpp>
 #include <velocity_field/velocity_samples.hpp>
 #include <velocity_field/velocity_samples_1d.hpp>
@@ -140,6 +143,12 @@ namespace stg::spectral {
             }
 
             return cov_data;
+        }
+
+        template<std::floating_point T>
+        std::vector<Tensor<T>> load_tensor_data(std::string_view filename) const {
+            RectilinearGridParser parser{work_dir_.string() + std::string{filename}};
+            return parser.tensor_data<T>("TENSORS TableName double");
         }
 
     private:
