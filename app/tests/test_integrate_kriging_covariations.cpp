@@ -46,3 +46,11 @@ SCENARIO_METHOD(IntegratorFixture, "Integrate covariation and obtain same fert v
     const auto [fert, r] = fert_integrator.integrate_pure();
     CHECK_THAT(r, WithinRel(fert, 1.e-4));
 }
+
+SCENARIO_METHOD(IntegratorFixture, "Integrate covariation and obtain same fert values obtained form kriging method using fourier tranform") {
+    IntegrateFert1D<double> fert_integrator{stg::spectral::DataLoader{work_dir}, cov_filename, fert_filename};
+
+    const auto [fert, r] = fert_integrator.apply_fourier_to_covariations();
+    fert_integrator.save_calculated_fert(work_dir + "fert_11_fourier.vtk"s);
+    CHECK_THAT(r, WithinRel(fert, 1.e-4));
+}
