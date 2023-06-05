@@ -69,7 +69,7 @@ namespace stg::kriging {
                     T v_real = output[ind][0] * num_real - output[ind][1] * num_imag;
                     T v_imag = output[ind][0] * num_imag + output[ind][1] * num_real;
 
-                    if (std::abs(v_imag) > 1e-4) {
+                    if (std::abs(v_imag) > 1e-8) {
                         throw std::runtime_error("nonzero imag part: " + std::to_string(v_imag));
                     }
                     ret[ind2] = v_real * nrm;
@@ -133,7 +133,7 @@ namespace stg::kriging {
                     T v_real = output[ind][0] * num_real - output[ind][1] * num_imag;
                     T v_imag = output[ind][0] * num_imag + output[ind][1] * num_real;
 
-                    if (std::abs(v_imag) > 1e-4) {
+                    if (std::abs(v_imag) > 1e-8) {
                         throw std::runtime_error("nonzero imag part: " + std::to_string(v_imag));
                     }
                     ret[ind2] = v_real * nrm;
