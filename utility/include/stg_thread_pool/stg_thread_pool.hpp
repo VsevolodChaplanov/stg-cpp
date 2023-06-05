@@ -2,6 +2,7 @@
 #define STG_UTILITY_STG_THREAD_POOL_HPP
 
 #include <algorithm>
+#include <bits/ranges_algo.h>
 #include <boost/asio/execution_context.hpp>
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/post.hpp>

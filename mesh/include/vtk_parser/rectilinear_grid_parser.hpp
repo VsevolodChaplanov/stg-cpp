@@ -40,6 +40,7 @@ namespace stg::mesh {
             bool has_length = false;
             std::size_t n;
             double l;
+            std::vector<T> vertices;
 
             while (std::getline(file_, line)) {
                 boost::tokenizer tok(line, sep);
@@ -49,10 +50,15 @@ namespace stg::mesh {
                     has_n_points = true;
                 }
 
+                if (*tok.begin() == "Y_COORDINATES") {
+                    coordinates_begin = false;
+                    has_length = true;
+                }
+
                 if (coordinates_begin) {
                     const auto coordinate_left = *tok.begin();
-                    l = 2 * std::fabs(std::stod(coordinate_left));
-                    has_length = true;
+                    const auto coord_left = std::stod(coordinate_left);
+                    vertices.push_back(coord_left);
                 }
 
                 if (*tok.begin() == "X_COORDINATES") {
@@ -62,8 +68,10 @@ namespace stg::mesh {
                 if (has_n_points && has_length) { break; }
             }
 
+            l = 2 * vertices.back();
+
             CubeMeshBuilder<T> builder{l, n};
-            return builder.build_relation_table();
+            return builder.build_relation_table(std::move(vertices));
         }
 
         template<std::floating_point T>
@@ -75,6 +83,7 @@ namespace stg::mesh {
             bool has_length = false;
             std::size_t n;
             double l;
+            std::vector<T> vertices;
 
             while (std::getline(file_, line)) {
                 boost::tokenizer tok(line, sep);
@@ -85,10 +94,15 @@ namespace stg::mesh {
                     has_cached_vert_number_ = true;
                 }
 
+                if (*tok.begin() == "Y_COORDINATES") {
+                    coordinates_begin = false;
+                    has_length = true;
+                }
+
                 if (coordinates_begin) {
                     const auto coordinate_left = *tok.begin();
-                    l = 2 * std::fabs(std::stod(coordinate_left));
-                    has_length = true;
+                    const auto coord_left = std::stod(coordinate_left);
+                    vertices.push_back(coord_left);
                 }
 
                 if (*tok.begin() == "X_COORDINATES") {
@@ -98,8 +112,10 @@ namespace stg::mesh {
                 if (has_n_points && has_length) { break; }
             }
 
+            l = 2 * vertices.back();
+
             CubeMeshBuilder<T> builder{l, n};
-            return builder.build();
+            return builder.build(vertices);
         }
 
         template<std::floating_point T>
