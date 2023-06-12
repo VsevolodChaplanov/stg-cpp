@@ -103,7 +103,7 @@ namespace stg::mesh {
 
         fmt::ostream open_file(std::string_view filename) {
             return fmt::output_file(filename.data(),
-                                    fmt::file::CREATE | fmt::file::WRONLY | fmt::file::APPEND);
+                                    fmt::file::CREATE | fmt::file::WRONLY);
         }
 
         void write_header(std::size_t dimensions) {

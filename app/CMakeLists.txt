@@ -19,7 +19,8 @@ target_link_libraries(${STG_APPLICATION_LIB} PUBLIC
   CONAN_PKG::fmt
   CONAN_PKG::fftw
   CONAN_PKG::armadillo
-  CONAN_PKG::range-v3)
+  CONAN_PKG::range-v3
+)
 target_link_directories(${STG_APPLICATION_LIB} PUBLIC
   ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
   CONAN_PKG::boost

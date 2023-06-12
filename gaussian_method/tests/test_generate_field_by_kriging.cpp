@@ -146,17 +146,17 @@ void gaussian2() {
 void gaussian3() {
     // ==== PARAMETERS
     // -- 1d partition and linear size of the discretized variance scalar field
-    size_t N = 21;
-    double L = 1;
+    size_t N = 17;
+    double L = 10;
     // -- 1d partition and linear size of the resulting velocity vector field
-    size_t N1 = 21;
-    double L1 = 1;
+    size_t N1 = 17;
+    double L1 = 10;
     // -- number of eigen vectors with largest eigen values that will be taken into account
-    size_t eigen_cut = 200;
+    size_t eigen_cut = 1000;
     // -- set variance to zero if it is lower than max_variance * variance_cut
-    double variance_cut = 0.05;
+    double variance_cut = 0.00;
     // -- generate n_tries resulting fields
-    size_t n_tries = 100;
+    size_t n_tries = 10000;
 
     // 1. build correlations and variance
     std::cout << "Computing spatial correlations" << std::endl;
@@ -227,6 +227,6 @@ void gaussian3() {
 }
 
 SCENARIO_METHOD(DirectFFTTestFixture, "Direct fourier transform tests") {
-    gaussian1();
-    // gaussian3();
+    // gaussian1();
+    gaussian3();
 }

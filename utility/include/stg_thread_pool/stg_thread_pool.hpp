@@ -8,6 +8,7 @@
 #include <boost/asio/thread_pool.hpp>
 #include <concepts>
 #include <ranges>
+#include <stop_token>
 #include <thread>
 #include <type_traits>
 #include <vector>
@@ -18,10 +19,10 @@ namespace stg::utility {
     public:
         explicit ThreadPool(std::size_t threads = std::max(1u, std::thread::hardware_concurrency()))
             : thread_amount_{threads} {
-            std::ranges::for_each(std::views::iota(0ull, threads),
-                                  [this](std::size_t) {
-                                      workers_.emplace_back([this] { io_.run(); });
-                                  });
+            // std::ranges::for_each(std::views::iota(0ull, threads),
+            //                       [this](std::size_t) {
+            //                           workers_.emplace_back([this](std::stop_token) { io_.run(); });
+            //                       });
         }
 
         ThreadPool(const ThreadPool&) = delete;
@@ -30,19 +31,19 @@ namespace stg::utility {
         ThreadPool(ThreadPool&&) = delete;
         ThreadPool& operator=(ThreadPool&&) = delete;
 
-        net::io_context& get_context() {
-            return io_;
+        net::thread_pool& get_context() {
+            return thread_pool_;
         }
 
         template<typename Task>
         void post(Task&& task) {
-            net::post(io_, std::forward<Task>(task));
+            net::post(thread_pool_, std::forward<Task>(task));
         }
 
     private:
         const std::size_t thread_amount_;
-        net::io_context io_{static_cast<int>(thread_amount_)};
-        std::vector<std::jthread> workers_{thread_amount_};
+        net::thread_pool thread_pool_{thread_amount_};
+        // std::vector<std::jthread> workers_{thread_amount_};
     };
 }// namespace stg::utility
 

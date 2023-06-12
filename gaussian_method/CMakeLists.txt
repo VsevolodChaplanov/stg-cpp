@@ -15,7 +15,8 @@ target_link_libraries(${STG_GAUSSIAN_LIB} PUBLIC
   CONAN_PKG::fftw
   CONAN_PKG::boost
   CONAN_PKG::range-v3
-  CONAN_PKG::armadillo)
+  CONAN_PKG::armadillo
+)
 target_link_directories(${STG_GAUSSIAN_LIB} PUBLIC
   CONAN_PKG::boost
   CONAN_PKG::fmt
@@ -52,7 +53,8 @@ target_link_libraries(${GAUSSIAN_TESTS} PUBLIC
   CONAN_PKG::range-v3
   CONAN_PKG::fftw
   CONAN_PKG::catch2
-  CONAN_PKG::armadillo)
+  CONAN_PKG::armadillo
+)
 
 target_link_directories(${GAUSSIAN_TESTS} PUBLIC
   ${STG_GAUSSIAN_METHOD_INCLUDE_DIR}/

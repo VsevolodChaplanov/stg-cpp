@@ -9,15 +9,15 @@
 struct KraichnanSpectralMethodApplicationGaussianSpectraFixture {
     const std::string directory_with_files = "./spectral_result/";
     const double time = 0;
-    const double cube_edge_length = 5;
-    const std::size_t cube_edge_n = 31;
+    const double cube_edge_length = 10;
+    const std::size_t cube_edge_n = 21;
     const std::size_t samples_n = 10000;
-    const std::size_t fourier_n = 100;
-    const double k_0 = 2 * std::numbers::pi / cube_edge_length;
+    const std::size_t fourier_n = 1000;
+    const double k_0 = std::numbers::pi / 3;
     const double w_0 = 1;
 };
 
-SCENARIO_METHOD(KraichnanSpectralMethodApplicationGaussianSpectraFixture, "Generate velocity samples by Kraichnan method") {
+SCENARIO_METHOD(KraichnanSpectralMethodApplicationGaussianSpectraFixture, "Generate velocity samples by Kraichnan method with gaussian spectra") {
     utility::ThreadPool pool{};
     for (const std::size_t isample: std::views::iota(0ull, samples_n)) {
         pool.post([isample, this] {
@@ -28,4 +28,5 @@ SCENARIO_METHOD(KraichnanSpectralMethodApplicationGaussianSpectraFixture, "Gener
                                              fmt::format("velocity_field_{}.vtk", isample));
         });
     }
+    pool.get_context().join();
 }

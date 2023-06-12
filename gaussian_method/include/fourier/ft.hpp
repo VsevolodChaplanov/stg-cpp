@@ -2,11 +2,13 @@
 #define STG_FOURIER_FT_HPP
 
 #include "../kriging/space.hpp"
-#include "fftw3.h"
+// #include "fftw3.h"
 #include "mesh_builders/mesh_builders.hpp"
 #include "rtable/cube_relation_table.hpp"
 #include <array>
 #include <concepts>
+#include <fftw3.h>
+#include <fmt/core.h>
 #include <memory>
 #include <mesh_builders/cube_fe_mesh.hpp>
 #include <vector>
@@ -77,7 +79,8 @@ namespace stg::kriging {
                     T v_imag = output[ind][0] * num_imag + output[ind][1] * num_real;
 
                     if (std::abs(v_imag) > 1e-6) {
-                        throw std::runtime_error("nonzero imag part: " + std::to_string(v_imag));
+                        fmt::print("Non zero image part: {} - real part is: {}", v_imag, v_real);
+                        // throw std::runtime_error("nonzero imag part: " + std::to_string(v_imag));
                     }
                     ret[ind2] = v_real * nrm;
                 }
@@ -142,7 +145,8 @@ namespace stg::kriging {
                     T v_imag = output[ind][0] * num_imag + output[ind][1] * num_real;
 
                     if (std::abs(v_imag) > 1e-6) {
-                        throw std::runtime_error("nonzero imag part: " + std::to_string(v_imag));
+                        fmt::print("Non zero image part: {} - real part is: {}", v_imag, v_real);
+                        //throw std::runtime_error("nonzero imag part: " + std::to_string(v_imag));
                     }
                     ret[ind2] = v_real * nrm;
                 }

@@ -140,7 +140,7 @@ namespace stg::kriging {
             TmpSpMat tmp(3 * outspace.N3, threshold);
 
             size_t n = outspace.N3;
-            auto ex = [n](size_t i) -> size_t { return i; };
+            auto ex = [](size_t i) -> size_t { return i; };
             auto ey = [n](size_t i) -> size_t { return i + n; };
             auto ez = [n](size_t i) -> size_t { return i + 2 * n; };
 
@@ -237,7 +237,9 @@ namespace stg::kriging {
         arma::SpMat<double> cov = build_covariance_matrix(varfun, params().variance_cut, space());
 
         std::cout << "Calculating eigen vectors" << std::endl;
-        arma::eigs_sym(_eigval, _eigvec, cov, params().eigen_cut);
+        auto options = arma::eigs_opts{};
+        options.maxiter = 10000;
+        arma::eigs_sym(_eigval, _eigvec, cov, cov.n_rows - 1, "la", options);
 
         // check for positive values only
         std::vector<size_t> not_needed;

@@ -23,7 +23,7 @@ SCENARIO_METHOD(SequantialAnalysisStochasticGaussianMethod1D, "Do analysis in se
             "samples", "peak diff", "int sqr diff");
 
     for (const std::size_t amount: {100, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000}) {
-        stg::kriging::DataLoader data_loader{path_str};
+        stg::spectral::DataLoader data_loader{path_str};
         SequentialAnalysis<double> kriging1d{std::move(data_loader), params};
         kriging1d.calc_covariations_for_amount(amount);
         file_with_integrals.print(

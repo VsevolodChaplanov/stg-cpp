@@ -27,6 +27,8 @@ find_package(Threads REQUIRED)
 
 add_compile_options(-Wall)
 
+# -fsanitize=thread)
+# add_link_options(-fsanitize=thread)
 include_directories(CONAN_PKG::boost
     CONAN_PKG::fmt
     CONAN_PKG::range-v3)

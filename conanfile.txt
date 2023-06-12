@@ -13,9 +13,11 @@ fftw:threads=True
 fftw:combinedthreads=True
 fftw:simd=sse2
 fftw:precision=double
+armadillo:shared=False
 armadillo:use_blas=system_blas
 armadillo:use_lapack=system_lapack
 armadillo:use_hdf5=False
+armadillo:use_wrapper=False
 
 
 [generators]

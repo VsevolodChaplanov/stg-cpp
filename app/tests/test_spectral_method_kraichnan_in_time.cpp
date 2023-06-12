@@ -41,7 +41,7 @@ SCENARIO_METHOD(KraichnanSpectralMethodApplicationFixture, "Generate velocity sa
 
     for (const std::size_t isample: std::views::iota(0ull, samples_n)) {
         pool.post([isample, this]() mutable {
-            KraichanMethodImpl<double> kraichnan_generator{cube_edge_length, cube_edge_n, samples_n, fourier_n, k_0, w_0, 42};
+            KraichanMethodImpl<double> kraichnan_generator{cube_edge_length, cube_edge_n, samples_n, fourier_n, k_0, w_0, v_0, 42};
             const double time_moment = dt * isample;
             kraichnan_generator.generate_sample(time_moment);
             kraichnan_generator.save_samples(directory_with_files,

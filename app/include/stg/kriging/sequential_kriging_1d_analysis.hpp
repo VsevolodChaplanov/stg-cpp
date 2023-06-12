@@ -1,12 +1,14 @@
 #ifndef STG_SEQUENTIAL_KRIGING_1D_ANALYSIS_HPP
 #define STG_SEQUENTIAL_KRIGING_1D_ANALYSIS_HPP
 
-#include "data_loader.hpp"
+#include "../spectral_method/data_loader.hpp"
 #include <fmt/format.h>
 #include <rtable/cube_vtk_saver.hpp>
 #include <statistics/deviation.hpp>
 #include <velocity_field/velocity_field_1d.hpp>
 #include <velocity_field/velocity_samples_1d.hpp>
+
+using namespace stg::spectral;
 
 namespace stg::kriging {
     using namespace stg::field;

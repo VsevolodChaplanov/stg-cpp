@@ -44,8 +44,9 @@ namespace stg::generators {
         using value_type = T;
 
         KraichanGeneratorDeltaFunction(std::size_t n, value_type k_0, value_type w_0, std::size_t seed = std::mt19937_64::default_seed) noexcept(std::is_nothrow_copy_constructible<Vector<value_type>>::value);
-        KraichanGeneratorDeltaFunction(std::size_t n, value_type k_0, value_type w_0, std::vector<Vector<value_type>> k, std::size_t seed = std::mt19937_64::default_seed);
-        KraichanGeneratorDeltaFunction(std::size_t n, value_type k_0, value_type w_0,
+        KraichanGeneratorDeltaFunction(std::size_t n, value_type v_0, value_type v_0_mesh, value_type k_0, value_type w_0, std::size_t seed = std::mt19937_64::default_seed) noexcept(std::is_nothrow_copy_constructible<Vector<value_type>>::value);
+        KraichanGeneratorDeltaFunction(std::size_t n, value_type v_0, value_type v_0_mesh, value_type k_0, value_type w_0, std::vector<Vector<value_type>> k, std::size_t seed = std::mt19937_64::default_seed);
+        KraichanGeneratorDeltaFunction(std::size_t n, value_type v_0, value_type v_0_mesh, value_type k_0, value_type w_0,
                                        std::vector<Vector<value_type>>&& v,
                                        std::vector<Vector<value_type>>&& w,
                                        std::vector<Vector<value_type>>&& k,
@@ -58,6 +59,8 @@ namespace stg::generators {
 
     private:
         std::size_t n_;
+        value_type v_0_ = 1.;
+        value_type v_0_mesh_ = 1.;
         value_type k_0_, w_0_;
         std::vector<Vector<value_type>> v_, w_;
         std::vector<Vector<value_type>> k_;
@@ -87,6 +90,9 @@ namespace stg::generators {
 
         KraichanGeneratorGaussian(std::size_t n, value_type k_0, value_type w_0, std::size_t seed = std::mt19937_64::default_seed) noexcept(std::is_nothrow_move_constructible_v<Vector<value_type>>&& std::is_nothrow_move_constructible_v<std::vector<Vector<value_type>>>);
 
+        KraichanGeneratorGaussian(std::size_t n, value_type v_0, value_type v_0_mesh, value_type k_0, value_type w_0, std::size_t seed = std::mt19937_64::default_seed) noexcept(std::is_nothrow_move_constructible_v<Vector<value_type>>&& std::is_nothrow_move_constructible_v<std::vector<Vector<value_type>>>);
+
+
         KraichanGeneratorGaussian(std::size_t n, value_type k_0, value_type w_0, std::vector<Vector<value_type>> k,
                                   std::size_t seed = std::mt19937_64::default_seed) noexcept(std::is_nothrow_move_constructible_v<Vector<value_type>>&&
                                                                                                      std::is_nothrow_move_constructible_v<std::vector<Vector<value_type>>>);
@@ -103,6 +109,8 @@ namespace stg::generators {
 
     private:
         std::size_t n_;
+        value_type v_0_ = 1.;
+        value_type v_0_mesh_ = 1.;
         value_type k_0_, w_0_;
         std::vector<Vector<value_type>> v_, w_;
         std::vector<Vector<value_type>> k_;
@@ -128,12 +136,16 @@ namespace stg::generators {
 
     template<std::floating_point T>
     KraichanGeneratorDeltaFunction<T>::KraichanGeneratorDeltaFunction(std::size_t n, value_type k_0, value_type w_0, std::size_t seed) noexcept(std::is_nothrow_copy_constructible<Vector<value_type>>::value)
-        : KraichanGeneratorDeltaFunction{n, k_0, w_0, generate_wave_vectors(k_0, n, seed), seed} {
+        : KraichanGeneratorDeltaFunction{n, 1., 1., k_0, w_0, generate_wave_vectors(k_0, n, seed), seed} {
     }
 
     template<std::floating_point T>
-    KraichanGeneratorDeltaFunction<T>::KraichanGeneratorDeltaFunction(std::size_t n, value_type k_0, value_type w_0, std::vector<Vector<value_type>> k, std::size_t seed)
-        : KraichanGeneratorDeltaFunction{n, k_0, w_0,
+    KraichanGeneratorDeltaFunction<T>::KraichanGeneratorDeltaFunction(std::size_t n, value_type v_0, value_type v_0_mesh, value_type k_0, value_type w_0, std::size_t seed) noexcept(std::is_nothrow_copy_constructible<Vector<value_type>>::value)
+        : KraichanGeneratorDeltaFunction(n, v_0, v_0_mesh, k_0, w_0, generate_wave_vectors(k_0, n, seed), seed) {}
+
+    template<std::floating_point T>
+    KraichanGeneratorDeltaFunction<T>::KraichanGeneratorDeltaFunction(std::size_t n, value_type v_0, value_type v_0_mesh, value_type k_0, value_type w_0, std::vector<Vector<value_type>> k, std::size_t seed)
+        : KraichanGeneratorDeltaFunction{n, v_0, v_0_mesh, k_0, w_0,
                                          generate_ampltudes(k, n, seed),
                                          generate_ampltudes(k, n, seed),
                                          std::move(k),
@@ -141,23 +153,25 @@ namespace stg::generators {
                                          seed} {}
 
     template<std::floating_point T>
-    KraichanGeneratorDeltaFunction<T>::KraichanGeneratorDeltaFunction(std::size_t n, value_type k_0, value_type w_0,
+    KraichanGeneratorDeltaFunction<T>::KraichanGeneratorDeltaFunction(std::size_t n, value_type v_0, value_type v_0_mesh, value_type k_0, value_type w_0,
                                                                       std::vector<Vector<value_type>>&& v,
                                                                       std::vector<Vector<value_type>>&& w,
                                                                       std::vector<Vector<value_type>>&& k,
                                                                       std::vector<value_type>&& omega,
                                                                       std::size_t seed) noexcept(std::is_nothrow_copy_constructible<Vector<value_type>>::value)
-        : n_{n}, k_0_{k_0}, w_0_{w_0}, v_{std::move(v)}, w_{std::move(w)}, k_{std::move(k)}, omega_{std::move(omega)} {}
+        : n_{n}, v_0_{v_0}, v_0_mesh_{v_0_mesh}, k_0_{k_0}, w_0_{w_0}, v_{std::move(v)}, w_{std::move(w)}, k_{std::move(k)}, omega_{std::move(omega)} {}
 
 
     template<std::floating_point T>
     Vector<T> KraichanGeneratorDeltaFunction<T>::operator()(const Point<value_type>& space_point, value_type time_point) const {
-        return FluctuationFouirerSum<value_type>::calculate_sum(v_ | std::views::all,
-                                                                w_ | std::views::all,
-                                                                k_ | std::views::all,
-                                                                omega_ | std::views::all,
-                                                                space_point,
-                                                                time_point);
+        const auto fluctuation_vector = FluctuationFouirerSum<value_type>::calculate_sum(v_ | std::views::all,
+                                                                                         w_ | std::views::all,
+                                                                                         k_ | std::views::all,
+                                                                                         omega_ | std::views::all,
+                                                                                         space_point,
+                                                                                         time_point);
+        const auto norm_coeff = v_0_ / v_0_mesh_;
+        return fluctuation_vector * norm_coeff;
     }
 
     template<std::floating_point T>
@@ -211,6 +225,10 @@ namespace stg::generators {
         : KraichanGeneratorGaussian{n, k_0, w_0, generate_wave_vectors(k_0, n, seed), seed} {}
 
     template<std::floating_point T>
+    KraichanGeneratorGaussian<T>::KraichanGeneratorGaussian(std::size_t n, value_type v_0, value_type v_0_mesh, value_type k_0, value_type w_0, std::size_t seed) noexcept(std::is_nothrow_move_constructible_v<Vector<value_type>>&& std::is_nothrow_move_constructible_v<std::vector<Vector<value_type>>>)
+        : KraichanGeneratorGaussian(n, k_0, w_0, generate_wave_vectors(k_0, n, seed)), v_0_{v_0}, v_0_mesh_(v_0_mesh) {}
+
+    template<std::floating_point T>
     KraichanGeneratorGaussian<T>::KraichanGeneratorGaussian(std::size_t n, value_type k_0, value_type w_0, std::vector<Vector<value_type>> k,
                                                             std::size_t seed) noexcept(std::is_nothrow_move_constructible_v<Vector<value_type>>&&
                                                                                                std::is_nothrow_move_constructible_v<std::vector<Vector<value_type>>>)
@@ -246,8 +264,6 @@ namespace stg::generators {
             auto y = generator();
             auto z = generator();
             return Vector<value_type>{x, y, z};
-            // Vector<value_type> result{x, y, z};
-            // return scale_to_length(result, k_0);
         };
 
         return ranges::views::generate(generate_random_vector) |
@@ -267,12 +283,14 @@ namespace stg::generators {
 
     template<std::floating_point T>
     Vector<T> KraichanGeneratorGaussian<T>::operator()(const Point<value_type>& space_point, value_type time_point) const {
-        return FluctuationFouirerSum<value_type>::calculate_sum(v_ | std::views::all,
-                                                                w_ | std::views::all,
-                                                                k_ | std::views::all,
-                                                                omega_ | std::views::all,
-                                                                space_point,
-                                                                time_point);
+        const auto fluctiation_vector = FluctuationFouirerSum<value_type>::calculate_sum(v_ | std::views::all,
+                                                                                         w_ | std::views::all,
+                                                                                         k_ | std::views::all,
+                                                                                         omega_ | std::views::all,
+                                                                                         space_point,
+                                                                                         time_point);
+        const auto norm_coeff = v_0_ / v_0_mesh_;
+        return fluctiation_vector * norm_coeff;
     }
 
 

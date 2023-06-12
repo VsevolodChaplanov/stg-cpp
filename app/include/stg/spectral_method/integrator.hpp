@@ -7,8 +7,10 @@
 #include "stg/spectral_method/data_loader.hpp"
 #include <catch2/internal/catch_clara.hpp>
 #include <concepts>
+#include <cstddef>
 #include <fourier.hpp>
 #include <memory>
+#include <numbers>
 #include <ranges>
 #include <spherical_mesh/sphere_mesh.hpp>
 #include <string_view>
@@ -88,6 +90,29 @@ namespace stg::spectral {
             return {fert_0, r_0};
         }
 
+        void calculate_energies() {
+            const std::size_t nvert = fert_mesh_->n_vertices();
+            energies_.resize(nvert);
+
+            for (const std::size_t index: std::views::iota(0ul, nvert)) {
+                const auto k_vec = fert_mesh_->relation_table()->vertex(index);
+                const auto fert = fert_values_[index];
+                const auto p_value = P<0, 0>(k_vec);
+                const auto k_vec_sqr = dot_product(k_vec, k_vec);
+                const auto energy = fert * 4 * std::numbers::pi * k_vec_sqr / p_value;
+                energies_[index] = energy;
+            }
+        }
+
+        void save_calculated_energies(std::string_view filepath,
+                                      std::string_view table_name = "TableName") const {
+            VtkRectilinearGridSaver saver{filepath};
+            saver.save_mesh(fert_mesh_->relation_table());
+            saver.save_scalar_data(energies_.cbegin(),
+                                   energies_.cend(),
+                                   table_name);
+        }
+
     private:
         const std::string fert_values_filename_;
         DataLoader loader_;
@@ -95,6 +120,17 @@ namespace stg::spectral {
         std::shared_ptr<mesh::CubeFiniteElementsMesh<T>> cov_mesh_;
         std::vector<T> cov_values_;
         std::vector<T> fert_values_;
+        std::vector<T> energies_;
+
+        template<std::size_t i, std::size_t j>
+        constexpr T P(const Vector<T>& k_vec) const {
+            const auto delta_ij = i == j ? 1 : 0;
+            const auto k_i = k_vec.template get<i>();
+            const auto k_j = k_vec.template get<j>();
+            const auto k_sqr = dot_product(k_vec, k_vec);
+
+            return delta_ij - (k_i * k_j) / k_sqr;
+        }
     };
 }// namespace stg::spectral
 

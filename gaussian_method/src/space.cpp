@@ -159,8 +159,6 @@ namespace stg::kriging {
     }
 
     void Space::tovtk_init(std::ostream& ofs, int data_dim) const {
-        double h = L / N;
-
         ofs << "# vtk DataFile Version 2.0" << std::endl;
         ofs << "Func" << std::endl;
         ofs << "ASCII" << std::endl;

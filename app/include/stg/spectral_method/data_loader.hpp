@@ -40,10 +40,10 @@ namespace stg::spectral {
         }
 
         template<std::floating_point T>
-        VelocityField<T> load_velocity_field(std::string_view filename) const {
+        VelocityField<T> load_velocity_field(std::string_view filename, std::string_view start_expr = "VECTORS VelocityField double") const {
             const std::string full_filename = fmt::format("{}{}", work_dir_.string(), filename);
             RectilinearGridParser parser{full_filename};
-            auto&& velocities_vector = parser.vector_data<T>("VECTORS VelocityField double");
+            auto&& velocities_vector = parser.vector_data<T>(start_expr);
             return VelocityField<T>{std::move(velocities_vector)};
         }
 

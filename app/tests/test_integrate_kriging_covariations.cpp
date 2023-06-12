@@ -52,5 +52,8 @@ SCENARIO_METHOD(IntegratorFixture, "Integrate covariation and obtain same fert v
 
     const auto [fert, r] = fert_integrator.apply_fourier_to_covariations();
     fert_integrator.save_calculated_fert(work_dir + "fert_11_fourier.vtk"s);
+
+    fert_integrator.calculate_energies();
+    fert_integrator.save_calculated_energies(work_dir + "energy_11.vtk");
     // CHECK_THAT(r, WithinRel(fert, 1.e-4));
 }
