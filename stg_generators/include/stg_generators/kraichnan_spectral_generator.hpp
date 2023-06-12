@@ -158,7 +158,8 @@ namespace stg::generators {
                                                                                          omega_ | std::views::all,
                                                                                          space_point,
                                                                                          time_point);
-        const auto norm_coeff = 1.;
+        // const auto tmp = std::numbers::pi * 21;
+        // const auto norm_coeff = static_cast<double>(n_) / (4 * tmp * tmp * tmp);
         return fluctuation_vector;
     }
 

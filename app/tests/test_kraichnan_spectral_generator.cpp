@@ -15,7 +15,7 @@ struct KraichnanSpectralMethodApplicationFixture {
     const double cube_edge_length = 10;
     const std::size_t cube_edge_n = 21;
     const std::size_t samples_n = 10000;
-    const std::size_t fourier_n = 500;
+    const std::size_t fourier_n = 1000;
     const double k_0 = std::numbers::pi / 3;
     const double v_0 = 1.;
     const double w_0 = 1.;

@@ -5,16 +5,20 @@
 #include <ranges>
 
 double energy_function(double kappa) {
-    double logkappa = log10(kappa);
-    double logE;
-    if (logkappa < 0.0) {
-        logE = 2 * logkappa - 1;
-    } else if (logkappa < 3.0) {
-        logE = -5.0 / 3.0 * logkappa - 1;
-    } else {
-        logE = -3 * logkappa + 3;
-    }
-    return std::pow(10, logE);
+
+    double k_0 = 1;
+    double sigma_k = 0.2;
+    return std::pow(std::numbers::e, -1. / 2. * (kappa - k_0) * (kappa - k_0) / (sigma_k * sigma_k));
+    // double logkappa = log10(kappa);
+    // double logE;
+    // if (logkappa < 0.0) {
+    //     logE = 2 * logkappa - 1;
+    // } else if (logkappa < 3.0) {
+    //     logE = -5.0 / 3.0 * logkappa - 1;
+    // } else {
+    //     logE = -3 * logkappa + 3;
+    // }
+    // return std::pow(10, logE);
 };
 
 SCENARIO("Save spectra function") {

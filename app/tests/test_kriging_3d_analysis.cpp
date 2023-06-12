@@ -4,6 +4,7 @@
 #include "stg/spectral_method/sequential_analysis.hpp"
 #include <array>
 #include <catch2/catch_test_macros.hpp>
+#include <complex>
 #include <cstddef>
 #include <fmt/core.h>
 #include <stg/spectral_method/validation_data.hpp>
@@ -69,16 +70,19 @@ SCENARIO_METHOD(Kriging3DCorrelationsTestsFixture, "Calculate energy tensor and 
 }
 
 double E(double kappa) {
-    double logkappa = log10(kappa);
-    double logE;
-    if (logkappa < 0.0) {
-        logE = 2 * logkappa - 1;
-    } else if (logkappa < 3.0) {
-        logE = -5.0 / 3.0 * logkappa - 1;
-    } else {
-        logE = -3 * logkappa + 3;
-    }
-    return std::pow(10, logE);
+    double k_0 = 1.25664;
+    double sigma_k = 0.1;
+    return 1 / sigma_k * std::pow(std::numbers::e, -1. / 2. * (kappa - k_0) * (kappa - k_0) / (sigma_k * sigma_k));
+    // double logkappa = log10(kappa);
+    // double logE;
+    // if (logkappa < 0.0) {
+    //     logE = 2 * logkappa - 1;
+    // } else if (logkappa < 3.0) {
+    //     logE = -5.0 / 3.0 * logkappa - 1;
+    // } else {
+    //     logE = -3 * logkappa + 3;
+    // }
+    // return std::pow(10, logE);
 };
 
 SCENARIO_METHOD(Kriging3DCorrelationsTestsFixture, "Create exact energy disctrete function") {
