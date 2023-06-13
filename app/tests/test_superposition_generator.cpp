@@ -20,11 +20,12 @@ struct KraichnanSpectralMethodApplicationFixture {
     const std::size_t cube_edge_n = 31;
     const std::size_t samples_n = 10000;
     std::vector<NodeParameters<double>> nodes{
-            NodeParameters<double>{.k_0 = std::numbers::pi / 3, .v_0 = 1., .nfourier = 1000, .seed = 42},
-            NodeParameters<double>{.k_0 = std::numbers::pi * 2 / 3, .v_0 = 1., .nfourier = 1000, .seed = 42},
-            NodeParameters<double>{.k_0 = std::numbers::pi, .v_0 = 1., .nfourier = 1000, .seed = 42},
-            NodeParameters<double>{.k_0 = std::numbers::pi * 4 / 3, .v_0 = 1., .nfourier = 1000, .seed = 42},
-            NodeParameters<double>{.k_0 = std::numbers::pi * 5 / 3, .v_0 = 1., .nfourier = 1000, .seed = 42},
+            NodeParameters<double>{.k_0 = std::numbers::pi * 1 / 4, .v_0 = 1., .nfourier = 1000, .seed = 42},
+            NodeParameters<double>{.k_0 = std::numbers::pi * 2 / 4, .v_0 = 1., .nfourier = 1000, .seed = 42},
+            NodeParameters<double>{.k_0 = std::numbers::pi * 3 / 4, .v_0 = 1., .nfourier = 1000, .seed = 42},
+            NodeParameters<double>{.k_0 = std::numbers::pi * 4 / 4, .v_0 = 1., .nfourier = 1000, .seed = 42},
+            // NodeParameters<double>{.k_0 = std::numbers::pi * 4 / 3, .v_0 = 1., .nfourier = 1000, .seed = 42},
+            // NodeParameters<double>{.k_0 = std::numbers::pi * 5 / 3, .v_0 = 1., .nfourier = 1000, .seed = 42},
     };
 };
 
@@ -34,7 +35,7 @@ SCENARIO_METHOD(KraichnanSpectralMethodApplicationFixture, "Generate velocity sa
     utility::ThreadPool pool{};
     for (const std::size_t isample: std::views::iota(0ull, samples_n)) {
         pool.post([isample, this] {
-            const std::size_t seed = isample * 42;
+            // const std::size_t seed = isample * 42;
             SpectralApproximatorGenerator generator{nodes};
             auto kraichnan_generator = std::make_shared<SuperpositionGenerator<double>>(cube_edge_length, cube_edge_n, generator);
             kraichnan_generator->generate_sample(time);

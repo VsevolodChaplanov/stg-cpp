@@ -29,6 +29,7 @@ namespace stg::spectral {
 
         void save_samples(const std::filesystem::path& directory, std::string_view filename, std::string_view table_name = "VelocityField") const;
         void generate_sample(value_type time);
+        void set_vo(value_type v0);
 
     private:
         std::shared_ptr<CubeFiniteElementsMesh<value_type>> fe_mesh_;
@@ -77,6 +78,11 @@ namespace stg::spectral {
             auto fluct = generator_(vertex, time);
             velocity_field_.set_value(std::move(fluct), ivert);
         }
+    }
+
+    template<std::floating_point T>
+    void KraichanMethodImpl<T>::set_vo(value_type v0) {
+        generator_.set_v0(v0);
     }
 
 

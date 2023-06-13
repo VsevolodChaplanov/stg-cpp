@@ -26,7 +26,7 @@ SCENARIO_METHOD(IntegratorFixture, "Integrate covariations obtained form kriging
     auto out = fmt::output_file(fmt::format("{}{}", work_dir, "energies.csv"), fmt::file::CREATE | fmt::file::WRONLY | fmt::file::APPEND);
 
     for (const std::size_t i: std::views::iota(0ul, n)) {
-        const double k_mod = k_start + dk * i;
+        const double k_mod = k_start + dk * static_cast<double>(i);
         const double e_value = integrator.integrate_for(k_mod);
 
         out.print("{},{},\n", k_mod, e_value);
@@ -50,7 +50,8 @@ SCENARIO_METHOD(IntegratorFixture, "Integrate covariation and obtain same fert v
 SCENARIO_METHOD(IntegratorFixture, "Integrate covariation and obtain same fert values obtained form kriging method using fourier tranform") {
     IntegrateFert1D<double> fert_integrator{stg::spectral::DataLoader{work_dir}, cov_filename, fert_filename};
 
-    const auto [fert, r] = fert_integrator.apply_fourier_to_covariations();
+    // const auto [fert, r] =
+    fert_integrator.apply_fourier_to_covariations();
     fert_integrator.save_calculated_fert(work_dir + "fert_11_fourier.vtk"s);
 
     fert_integrator.calculate_energies();

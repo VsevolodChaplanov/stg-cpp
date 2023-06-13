@@ -33,7 +33,14 @@
 namespace stg::generators {
 
     template<std::floating_point T>
-    class AKraichanGenerator : public ISpectralGenerator<T> {};
+    class AKraichanGenerator : public ISpectralGenerator<T> {
+    public:
+        void set_v0(T v0) { v0_ = v0; }
+
+    protected:
+        // Value of desired root mean square
+        T v0_ = 1.;
+    };
 
     /*
         Uses DeltaSpectra, generates velocity vectors with given amplitude
@@ -84,6 +91,7 @@ namespace stg::generators {
     class KraichanGeneratorGaussian final : public AKraichanGenerator<T> {
     public:
         using value_type = T;
+        using AKraichanGenerator<T>::set_v0;
 
         KraichanGeneratorGaussian(std::size_t n, value_type k_0, value_type w_0, std::size_t seed = std::mt19937_64::default_seed) noexcept(std::is_nothrow_move_constructible_v<Vector<value_type>>&& std::is_nothrow_move_constructible_v<std::vector<Vector<value_type>>>);
 
@@ -159,8 +167,8 @@ namespace stg::generators {
                                                                                          space_point,
                                                                                          time_point);
         // const auto tmp = std::numbers::pi * 21;
-        // const auto norm_coeff = static_cast<double>(n_) / (4 * tmp * tmp * tmp);
-        return fluctuation_vector;
+        const auto norm_coeff = std::sqrt((this->v0_ * 2) / (k_0_ * static_cast<value_type>(n_) * 3));
+        return fluctuation_vector * norm_coeff;
     }
 
     template<std::floating_point T>
@@ -274,7 +282,7 @@ namespace stg::generators {
                                                                                          omega_ | std::views::all,
                                                                                          space_point,
                                                                                          time_point);
-        const auto norm_coeff = 1.;
+        // const auto norm_coeff = 1.;
         return fluctiation_vector;
     }
 

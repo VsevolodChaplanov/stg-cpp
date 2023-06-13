@@ -2,6 +2,7 @@
 #define STG_FLUCTUATION_FOURIER_SUM_HPP
 
 #include <algorithm>
+#include <bits/ranges_base.h>
 #include <concepts>
 #include <numeric>
 #include <range/v3/view/transform.hpp>
@@ -54,6 +55,36 @@ namespace stg::generators {
 
             return result_fluctuation;
         }
+    };
+
+    template<std::floating_point T>
+    class EvenFluctuationFouirerSum final {
+    public:
+        using value_type = T;
+
+        template<std::ranges::viewable_range Q, std::ranges::viewable_range K, std::ranges::viewable_range Psi,
+                 std::ranges::viewable_range Omega,
+                 std::ranges::viewable_range KV, std::ranges::viewable_range Sigma>
+        static Vector<value_type> calculate_sum(Q&& q, K&& k, Psi&& psi, Omega&& omega, KV&& k_units, Sigma&& sigma_units,
+                                                const Point<value_type>& space_point, value_type time) {
+            auto zip = ranges::views::zip(std::forward<Q>(q),
+                                          std::forward<K>(k),
+                                          std::forward<Psi>(psi),
+                                          std::forward<Omega>(omega),
+                                          std::forward<KV>(k_units),
+                                          std::forward<Sigma>(sigma_units));
+            Vector<value_type> result{value_type{0}, value_type{0}, value_type{0}};
+
+            result = ranges::accumulate(std::move(zip), result, [&space_point, time](const Vector<value_type>& accumulated, const auto& vectors_tuple) {
+                const auto [q_m, k_m, psi_m, omega_m, wave_vector_unit, sigma_vector_unit] = vectors_tuple;
+                const auto phase = dot_product(wave_vector_unit, space_point) * k_m + psi_m + omega_m * time;
+                const auto amplitude_magnitude = 2 * q_m * std::cos(phase);
+                const auto u_m = sigma_vector_unit * amplitude_magnitude;
+                return accumulated + u_m;
+            });
+
+            return result;
+        };
     };
 }// namespace stg::generators
 

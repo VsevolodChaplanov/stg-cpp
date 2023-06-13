@@ -29,6 +29,7 @@ SCENARIO_METHOD(KraichnanSpectralMethodApplicationFixture, "Generate velocity sa
         pool.post([isample, this] {
             const std::size_t seed = isample * 42;
             auto kraichnan_generator = std::make_shared<KraichanMethodImpl<double>>(cube_edge_length, cube_edge_n, samples_n, fourier_n, k_0, w_0, seed);
+            kraichnan_generator->set_vo(3.);
             kraichnan_generator->generate_sample(time);
             kraichnan_generator->save_samples(directory_with_files,
                                               fmt::format("velocity_field_{}.vtk", isample));

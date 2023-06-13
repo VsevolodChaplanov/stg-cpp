@@ -29,7 +29,7 @@ namespace stg::generators {
     template<std::floating_point T>
     class SpectralApproximatorGenerator final : public ISpectralGenerator<T> {
     public:
-        SpectralApproximatorGenerator(std::vector<NodeParameters<T>> nodes)
+        explicit SpectralApproximatorGenerator(std::vector<NodeParameters<T>> nodes)
             : generator_nodes_params_{(std::move(nodes))},
               generators_(generator_nodes_params_ | ranges::views::transform([](const NodeParameters<T>& node) {
                               return KraichanGeneratorDeltaFunction<T>{node.nfourier, node.k_0, node.w_0, node.seed};

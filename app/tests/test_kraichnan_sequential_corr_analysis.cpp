@@ -80,7 +80,7 @@ struct SequentialCorrelationsTestsSuperpositionMethodFixture {
     const std::string save = "./spectral_superpos_result/covariations.vtk";
 };
 
-SCENARIO_METHOD(SequentialCorrelationsTestsSuperpositionMethodFixture, "Calculate squentially covariation function") {
+SCENARIO_METHOD(SequentialCorrelationsTestsSuperpositionMethodFixture, "Calculate squentially covariation function for superposition method") {
 
     stg::spectral::DataLoader loader{dir};
     SequentialCorrelations<double> analyser{std::move(loader), mesh_file};

@@ -1,6 +1,7 @@
 #ifndef STG_SPECTRAL_METHOD_COMMON_HPP
 #define STG_SPECTRAL_METHOD_COMMON_HPP
 
+#include "spectral_method/des_generator_impl.hpp"
 #include "spectral_method/i_spectral_method.hpp"
 #include "spectral_method/integrator.hpp"
 #include "spectral_method/kraichnan_method_impl.hpp"
